@@ -44,3 +44,6 @@ next-env.d.ts
 # 驗證用截圖（scripts/rwd-screenshot.mjs、scripts/form-test.mjs 產生，非版控內容）
 .rwd-screenshots*/
 .form-test-screenshot.png
+
+.vercel
+.env*
