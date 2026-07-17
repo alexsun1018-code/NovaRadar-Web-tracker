@@ -1,0 +1,19 @@
+{
+  "_meta": {
+    "content_type": "contact-info",
+    "schema_status": "首頁/聯絡我們頁專用結構化欄位，非 content-model.md 既有列表型別",
+    "source": "docx 未提供實際聯絡資訊，全部欄位待補",
+    "fields": ["phone", "address_zhTW", "address_en", "contact_person_name_zhTW", "contact_person_name_en", "contact_person_title_zhTW", "contact_person_title_en", "email"]
+  },
+  "item": {
+    "_placeholder": true,
+    "phone": "",
+    "address_zhTW": "",
+    "address_en": "",
+    "contact_person_name_zhTW": "",
+    "contact_person_name_en": "",
+    "contact_person_title_zhTW": "",
+    "contact_person_title_en": "",
+    "email": ""
+  }
+}

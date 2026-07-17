@@ -1,0 +1,1 @@
+NovaRadar Bio Venture Corporation is a professional venture capital firm. Neither the Company (including its subsidiaries) nor any of its personnel provide advice or services related to personal financial planning or investment, nor do we operate or manage any messaging app groups.

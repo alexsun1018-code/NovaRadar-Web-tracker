@@ -1,0 +1,109 @@
+{
+  "Nav": {
+    "about": "關於我們",
+    "companyIntro": "公司簡介",
+    "companyHistory": "成立沿革",
+    "organization": "組織架構",
+    "leadershipTeam": "經營團隊",
+    "investmentStrategy": "投資策略",
+    "portfolio": "投資組合",
+    "news": "新聞中心",
+    "newsGeneral": "相關新聞",
+    "newsDisclosures": "重大訊息",
+    "esg": "企業永續",
+    "investors": "投資人專區",
+    "careers": "人力資源",
+    "contact": "聯絡我們",
+    "legalDisclaimer": "特別聲明",
+    "legalPrivacyPolicy": "隱私權政策"
+  },
+  "Common": {
+    "comingSoon": "建置中",
+    "notTranslated": "此內容尚未提供英文版本，暫以繁體中文顯示。",
+    "learnMore": "了解更多",
+    "allYears": "全部"
+  },
+  "News": {
+    "source": "資料來源",
+    "announcementNo": "公告編號"
+  },
+  "Taxonomy": {
+    "newsCategory": {
+      "媒體報導": "媒體報導",
+      "公司新聞稿": "公司新聞稿",
+      "活動訊息": "活動訊息",
+      "其他": "其他"
+    },
+    "disclosureCategory": {
+      "財務": "財務",
+      "人事": "人事",
+      "投資": "投資",
+      "股東會": "股東會",
+      "其他重大訊息": "其他重大訊息"
+    },
+    "investmentStage": {
+      "種子輪": "種子輪",
+      "A輪": "A輪",
+      "B輪": "B輪",
+      "後期": "後期",
+      "其他": "其他"
+    }
+  },
+  "ContactPage": {
+    "phone": "電話",
+    "email": "Email",
+    "address": "地址",
+    "contactPerson": "聯絡窗口",
+    "notProvided": "尚未提供"
+  },
+  "ComingSoonPage": {
+    "subtitle": "本頁面內容準備中，敬請期待。"
+  },
+  "Hero": {
+    "pause": "暫停輪播",
+    "play": "繼續播放",
+    "previous": "上一張",
+    "next": "下一張",
+    "goToSlide": "前往第 {index} 張"
+  },
+  "ValueProps": {
+    "title": "為什麼選擇瑞大",
+    "subtitle": "以科學求真的態度，守護生命、永續共榮"
+  },
+  "Portfolio": {
+    "title": "投資組合",
+    "subtitle": "來自生技研發、企業經營的菁英投資團隊，秉持專業扶植育成新創生技企業。",
+    "viewAll": "查看完整投資組合",
+    "visitWebsite": "前往官網",
+    "exited": "已出場",
+    "tabs": {
+      "drugRnD": "新藥研發",
+      "medtechOther": "醫療技術及其他"
+    }
+  },
+  "ProposalForm": {
+    "title": "商機提案",
+    "subtitle": "無論是資金需求或策略合作，歡迎與我們聯繫。",
+    "name": "姓名",
+    "company": "公司／機構",
+    "email": "Email",
+    "phone": "電話",
+    "inquiryType": "洽談業務類別",
+    "inquiryTypeFunding": "資金需求",
+    "inquiryTypePartnership": "策略合作",
+    "inquiryTypeOther": "其他",
+    "message": "簡述需求（選填）",
+    "submit": "確定送出",
+    "submitting": "送出中…",
+    "successTitle": "送出完成",
+    "successMessage": "感謝您的提案，我們將盡快與您聯繫。",
+    "errorMessage": "送出失敗，請稍後再試或直接以 Email 與我們聯繫。"
+  },
+  "Footer": {
+    "aboutColumn": "關於我們",
+    "newsColumn": "新聞中心",
+    "legalColumn": "法律資訊",
+    "contactColumn": "聯絡資訊",
+    "rights": "© {year} 瑞大生技投資管理顧問股份有限公司 NovaRadar Bio Venture Corporation. All rights reserved."
+  }
+}

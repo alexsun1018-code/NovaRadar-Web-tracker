@@ -1,0 +1,109 @@
+{
+  "Nav": {
+    "about": "About",
+    "companyIntro": "Company Profile",
+    "companyHistory": "Company History",
+    "organization": "Organization",
+    "leadershipTeam": "Leadership Team",
+    "investmentStrategy": "Investment Strategy",
+    "portfolio": "Portfolio",
+    "news": "News",
+    "newsGeneral": "News Report",
+    "newsDisclosures": "Announcements",
+    "esg": "ESG",
+    "investors": "Investors",
+    "careers": "Careers",
+    "contact": "Contact Us",
+    "legalDisclaimer": "Disclaimer",
+    "legalPrivacyPolicy": "Privacy Policy"
+  },
+  "Common": {
+    "comingSoon": "Coming soon",
+    "notTranslated": "This content is not yet available in English and is shown in Traditional Chinese.",
+    "learnMore": "Learn more",
+    "allYears": "All years"
+  },
+  "News": {
+    "source": "Source",
+    "announcementNo": "Announcement No."
+  },
+  "Taxonomy": {
+    "newsCategory": {
+      "媒體報導": "Media Coverage",
+      "公司新聞稿": "Press Release",
+      "活動訊息": "Event",
+      "其他": "Other"
+    },
+    "disclosureCategory": {
+      "財務": "Financial",
+      "人事": "Personnel",
+      "投資": "Investment",
+      "股東會": "Shareholders Meeting",
+      "其他重大訊息": "Other Material Disclosure"
+    },
+    "investmentStage": {
+      "種子輪": "Seed",
+      "A輪": "Series A",
+      "B輪": "Series B",
+      "後期": "Late Stage",
+      "其他": "Other"
+    }
+  },
+  "ContactPage": {
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "contactPerson": "Contact Person",
+    "notProvided": "Not yet provided"
+  },
+  "ComingSoonPage": {
+    "subtitle": "This page is being prepared. Please check back soon."
+  },
+  "Hero": {
+    "pause": "Pause carousel",
+    "play": "Resume carousel",
+    "previous": "Previous slide",
+    "next": "Next slide",
+    "goToSlide": "Go to slide {index}"
+  },
+  "ValueProps": {
+    "title": "Why NovaRadar",
+    "subtitle": "Scientific rigor, protecting life, sustainable co-prosperity"
+  },
+  "Portfolio": {
+    "title": "Portfolio",
+    "subtitle": "An elite investment team from biotech R&D and corporate management, dedicated to nurturing biotech startups.",
+    "viewAll": "View full portfolio",
+    "visitWebsite": "Visit website",
+    "exited": "Exited",
+    "tabs": {
+      "drugRnD": "Drug R&D",
+      "medtechOther": "MedTech & Other"
+    }
+  },
+  "ProposalForm": {
+    "title": "Business Proposal",
+    "subtitle": "Whether it's funding needs or strategic partnership, we'd love to hear from you.",
+    "name": "Name",
+    "company": "Company / Organization",
+    "email": "Email",
+    "phone": "Phone",
+    "inquiryType": "Inquiry Type",
+    "inquiryTypeFunding": "Funding Needs",
+    "inquiryTypePartnership": "Strategic Partnership",
+    "inquiryTypeOther": "Other",
+    "message": "Message (optional)",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "successTitle": "Submitted",
+    "successMessage": "Thank you for reaching out. We'll get back to you shortly.",
+    "errorMessage": "Submission failed. Please try again later or email us directly."
+  },
+  "Footer": {
+    "aboutColumn": "About",
+    "newsColumn": "News",
+    "legalColumn": "Legal",
+    "contactColumn": "Contact",
+    "rights": "© {year} NovaRadar Bio Venture Corporation. All rights reserved."
+  }
+}

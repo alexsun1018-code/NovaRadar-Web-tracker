@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/*
+ * 品牌色票／字型尚未定案（見 CLAUDE.md 待補章節）。
+ * 以下為暫代 token，之後品牌手冊定案後只需改這裡的值，元件不需重寫。
+ */
+:root {
+  --background: #f7f7f5;
+  --foreground: #1a1a1a;
+
+  --brand-primary: #0b2c4d;
+  --brand-primary-light: #1c4870;
+  --brand-secondary: #0f5c4e;
+  --brand-accent: #c9a227;
+
+  --brand-neutral-50: #f7f7f5;
+  --brand-neutral-100: #eceae5;
+  --brand-neutral-300: #c9c6bd;
+  --brand-neutral-600: #6b6a63;
+  --brand-neutral-900: #1a1a1a;
+
+  /* 首頁各主題區塊的淡色底，分別取自品牌主色/輔色/強調色的淡化版本，方便下拉瀏覽時區分主題 */
+  --section-blue-50: #eaf1f8;
+  --section-green-50: #e8f5ef;
+  --section-gold-50: #fbf4e4;
+
+  --font-sans: system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei",
+    "Noto Sans TC", "Segoe UI", sans-serif;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-light: var(--brand-primary-light);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+
+  --color-brand-neutral-50: var(--brand-neutral-50);
+  --color-brand-neutral-100: var(--brand-neutral-100);
+  --color-brand-neutral-300: var(--brand-neutral-300);
+  --color-brand-neutral-600: var(--brand-neutral-600);
+  --color-brand-neutral-900: var(--brand-neutral-900);
+
+  --color-section-blue-50: var(--section-blue-50);
+  --color-section-green-50: var(--section-green-50);
+  --color-section-gold-50: var(--section-gold-50);
+
+  --font-sans: var(--font-sans);
+}
+
+html {
+  /* 全站字級整體放大（原 16px 基準 → 18px），Tailwind text-* 皆為 rem 單位會等比縮放 */
+  font-size: 112.5%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* data/pages/*.md 渲染樣式。blockquote 用來標示「尚未提供」的內容缺口，故刻意做成明顯的佔位框樣式 */
+.md-content h2 {
+  margin-top: 2rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.md-content h2:first-child {
+  margin-top: 0;
+}
+
+.md-content p {
+  margin-top: 1rem;
+  line-height: 1.75;
+  color: var(--brand-neutral-900);
+}
+
+.md-content blockquote {
+  margin-top: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px dashed var(--brand-neutral-300);
+  background: var(--brand-neutral-50);
+  padding: 1rem 1.25rem;
+  color: var(--brand-neutral-600);
+  font-size: 0.875rem;
+}
+
+.md-content blockquote p {
+  margin-top: 0;
+}

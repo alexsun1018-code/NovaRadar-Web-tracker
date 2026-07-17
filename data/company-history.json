@@ -1,0 +1,29 @@
+{
+  "_meta": {
+    "content_type": "company-history-timeline",
+    "schema_status": "尚未正式納入 content-model.md，本輪新增，待回填該文件",
+    "source": "瑞大生技網頁專案-Content Model.docx（客戶標註為範例內容）",
+    "fields": {
+      "year": "number, 必填",
+      "milestones[].date": "string YYYY-MM-DD, 必填",
+      "milestones[].title_zhTW": "string, 必填",
+      "milestones[].title_en": "string, 選填",
+      "milestones[].description_zhTW": "string, 選填",
+      "milestones[].description_en": "string, 選填"
+    }
+  },
+  "items": [
+    {
+      "year": 2026,
+      "milestones": [
+        {
+          "date": "2026-06-01",
+          "title_zhTW": "啟動 NovaRadar 生醫永續一號基金",
+          "title_en": "Launch of NovaRadar Bio Sustainability Fund I",
+          "description_zhTW": "第一期基金成功募集，規模達新台幣 30 億元，重點布局次世代核酸藥物與 AI 精準篩檢",
+          "description_en": "First fund successfully raised, reaching NT$3 billion, with a focus on next-generation nucleic acid therapeutics and AI-driven precision screening"
+        }
+      ]
+    }
+  ]
+}

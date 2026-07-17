@@ -1,0 +1,26 @@
+{
+  "_meta": {
+    "content_type": "team-member",
+    "schema_ref": "content-model.md #1 經營團隊成員",
+    "source": "docx 未提供實際姓名/職稱/照片，以下為欄位骨架示意，非真實成員資料",
+    "fields": ["name_zhTW", "name_en", "title_zhTW", "title_en", "photo", "bio_zhTW", "bio_en", "department", "linkedin_url", "order"]
+  },
+  "items": [
+    {
+      "id": "placeholder-team-member-1",
+      "slug": "placeholder-team-member-1",
+      "status": "draft",
+      "_placeholder": true,
+      "name_zhTW": "",
+      "name_en": "",
+      "title_zhTW": "",
+      "title_en": "",
+      "photo": "",
+      "bio_zhTW": "",
+      "bio_en": "",
+      "department": "經營團隊",
+      "linkedin_url": "",
+      "order": 1
+    }
+  ]
+}

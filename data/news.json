@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "content_type": "news",
+    "schema_ref": "content-model.md #4 相關新聞",
+    "source": "docx 未提供實際新聞條目，僅要求「過去 1-2 年新聞稿或至少 3 篇範例」，以下為示範用範例資料",
+    "fields": ["title_zhTW", "title_en", "publish_date", "category", "cover_image", "summary_zhTW", "content_zhTW", "content_en", "source_name_zhTW", "source_name_en", "source_url", "attachment"]
+  },
+  "items": [
+    {
+      "id": "news-fund-launch",
+      "slug": "news-fund-launch",
+      "status": "draft",
+      "_placeholder": true,
+      "title_zhTW": "NovaRadar 生醫永續一號基金正式啟動",
+      "title_en": "NovaRadar Bio Sustainability Fund I Officially Launched",
+      "publish_date": "2026-06-01",
+      "category": "公司新聞稿",
+      "cover_image": "",
+      "summary_zhTW": "第一期基金成功募集，規模達新台幣 30 億元，重點布局次世代核酸藥物與 AI 精準篩檢。",
+      "summary_en": "The first fund has been successfully raised, reaching NT$3 billion, with a focus on next-generation nucleic acid therapeutics and AI-driven precision screening.",
+      "content_zhTW": "瑞大生技投資管理顧問股份有限公司（NovaRadar Bio Venture）宣布，第一期基金「NovaRadar 生醫永續一號基金」正式啟動，本期基金成功募集新台幣 30 億元，重點布局次世代核酸藥物與 AI 精準篩檢兩大領域。\n\n本基金將秉持公司一貫「科學求真、守護生命、永續共榮」的投資理念，鎖定全球具國際競爭力的生技醫療投資標的。",
+      "content_en": "NovaRadar Bio Venture Corporation announced the official launch of its first fund, the \"NovaRadar Bio Sustainability Fund I.\" The fund successfully raised NT$3 billion, with a strategic focus on two key areas: next-generation nucleic acid therapeutics and AI-driven precision screening.\n\nThe fund will continue to uphold the company's guiding philosophy of \"scientific rigor, protecting life, sustainable co-prosperity,\" targeting globally competitive biotech and healthcare investment opportunities.",
+      "source_name_zhTW": "",
+      "source_url": "",
+      "attachment": ""
+    },
+    {
+      "id": "news-industry-forum",
+      "slug": "news-industry-forum",
+      "status": "draft",
+      "_placeholder": true,
+      "title_zhTW": "瑞大生技投資團隊出席 2026 亞洲生技產業論壇",
+      "title_en": "NovaRadar Investment Team Attends the 2026 Asia Biotech Industry Forum",
+      "publish_date": "2026-04-15",
+      "category": "活動訊息",
+      "cover_image": "",
+      "summary_zhTW": "瑞大生技投資團隊受邀出席論壇，分享跨界生醫投資觀點。",
+      "summary_en": "NovaRadar's investment team was invited to speak at the forum, sharing cross-disciplinary perspectives on biomedical investment.",
+      "content_zhTW": "瑞大生技投資管理顧問投資團隊受邀出席 2026 亞洲生技產業論壇，與國際生技投資機構代表交流，分享公司在新藥研發與精準醫療領域的投資觀點與布局經驗。",
+      "content_en": "NovaRadar Bio Venture's investment team was invited to attend the 2026 Asia Biotech Industry Forum, exchanging insights with representatives from international biotech investment institutions and sharing the company's investment perspective and track record in new drug development and precision medicine.",
+      "source_name_zhTW": "",
+      "source_url": "",
+      "attachment": ""
+    },
+    {
+      "id": "news-media-interview",
+      "slug": "news-media-interview",
+      "status": "draft",
+      "_placeholder": true,
+      "title_zhTW": "瑞大生技執行合夥人接受媒體專訪：談永續創投布局",
+      "title_en": "NovaRadar's Managing Partner Talks Sustainable Venture Strategy in Media Interview",
+      "publish_date": "2026-02-20",
+      "category": "媒體報導",
+      "cover_image": "",
+      "summary_zhTW": "示範用範例報導，實際轉載內容與來源待提供。",
+      "summary_en": "Sample article for demonstration purposes; actual reprint content and source to be provided.",
+      "content_zhTW": "（示範用範例內容）瑞大生技執行合夥人於專訪中談及公司的永續創投策略，說明如何以主動式、全球化的投資方式，扶植具潛力的生技新創企業。",
+      "content_zhCN": "（示范用范例内容）瑞大生技执行合伙人于专访中谈及公司的永续创投策略，说明如何以主动式、全球化的投资方式，扶植具潜力的生技初创企业。",
+      "content_en": "(Sample content for demonstration purposes) In this interview, NovaRadar's Managing Partner discussed the company's sustainable venture capital strategy, explaining how an active, globally-oriented investment approach is used to nurture promising biotech startups.",
+      "source_name_zhTW": "示範媒體（範例，待提供實際轉載來源）",
+      "source_name_en": "Sample Media Outlet (placeholder — actual reprint source to be provided)",
+      "source_url": "",
+      "attachment": ""
+    }
+  ]
+}

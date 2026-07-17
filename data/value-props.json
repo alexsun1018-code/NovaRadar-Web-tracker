@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "content_type": "value-proposition",
+    "schema_status": "首頁專屬新型別，非 content-model.md 既有列表，屬假設性行銷文案，待行銷/品牌確認後更新",
+    "source": "依 data/pages/company-intro.md 公司簡介文字推導",
+    "fields": ["order", "image", "title_zhTW", "title_en", "description_zhTW", "description_en"],
+    "image_source": "取自 Unsplash（Unsplash License，免費商用免署名），詳見各筆 image_credit。之後若要換圖，同樣需確認來源授權可商用"
+  },
+  "items": [
+    {
+      "id": "value-global",
+      "_placeholder": true,
+      "order": 1,
+      "image": "/images/value-global-vision.jpg",
+      "image_credit": "Photo by Mario Verduzco on Unsplash",
+      "title_zhTW": "全球視野",
+      "title_en": "Global Perspective",
+      "description_zhTW": "鎖定全球具國際競爭力的生技醫療投資標的。",
+      "description_en": "Targeting globally competitive biotech and healthcare investment opportunities."
+    },
+    {
+      "id": "value-team",
+      "_placeholder": true,
+      "order": 2,
+      "image": "/images/value-team.jpg",
+      "image_credit": "Photo by Vitaly Gariev on Unsplash",
+      "title_zhTW": "跨界專業團隊",
+      "title_en": "Cross-Disciplinary Expert Team",
+      "description_zhTW": "核心經理人具備生醫博士與國際財務分析師的複合背景。",
+      "description_en": "Our core team combines biomedical PhDs with international financial analyst expertise."
+    },
+    {
+      "id": "value-strategy",
+      "_placeholder": true,
+      "order": 3,
+      "image": "/images/value-risk-control.jpg",
+      "image_credit": "Photo by Stephen Dawson on Unsplash",
+      "title_zhTW": "主動式風控策略",
+      "title_en": "Active Risk-Control Strategy",
+      "description_zhTW": "採主動式、全球化、風險平衡的投資策略。",
+      "description_en": "An active, globally-oriented, risk-balanced investment strategy."
+    },
+    {
+      "id": "value-sustainability",
+      "_placeholder": true,
+      "order": 4,
+      "image": "/images/value-sustainability.jpg",
+      "image_credit": "Photo by Sarah Dorweiler on Unsplash",
+      "title_zhTW": "永續共榮",
+      "title_en": "Sustainable Co-Prosperity",
+      "description_zhTW": "科學求真、守護生命，與被投企業共創長期穩健價值。",
+      "description_en": "Scientific rigor and protecting life — creating long-term, stable value together with our portfolio companies."
+    }
+  ]
+}
