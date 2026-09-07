@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { mainNav } from "@/lib/nav/config";
@@ -23,12 +24,18 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-brand-neutral-100 bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link
-          href="/"
-          className="text-2xl font-extrabold text-brand-primary"
-        >
-          NovaRadar{" "}
-          <span className="font-bold text-brand-neutral-900">瑞大生技</span>
+        <Link href="/" className="flex shrink-0 items-center gap-3">
+          <Image
+            src="/images/logo-mark.png"
+            alt="NovaRadar"
+            width={180}
+            height={27}
+            priority
+            className="h-7 w-auto sm:h-8"
+          />
+          <span className="hidden whitespace-nowrap text-lg font-bold text-brand-neutral-900 sm:inline">
+            瑞大生技
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-5 xl:flex">

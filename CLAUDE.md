@@ -14,6 +14,7 @@
 - 圖片素材：`public/images/hero-bg-lab.jpg`（首頁 Hero 背景）取自 Unsplash，攝影師 Nathan Rimoux，[Unsplash License](https://unsplash.com/license) 免費商用免署名；上層疊加品牌色漸層（`opacity: 0.88`）確保文字對比。之後若要換圖，同樣需確認來源授權可商用，不要直接用 pngtree 等付費圖庫的預覽圖
   - `public/images/value-*.jpg`（首頁「為什麼選擇瑞大」四張圖示照片）同樣取自 Unsplash 免費授權，攝影師與出處記錄於 `data/value-props.json` 各筆 `image_credit`
   - `public/images/banner-{about,portfolio,news,contact}.jpg`（關於我們／投資組合／新聞中心／聯絡我們各主項目頁頂部橫幅，`components/layout/PageHeaderBanner.tsx`）同樣取自 Unsplash 免費授權：banner-about 攝影師 Braňo、banner-portfolio 攝影師 Samson、banner-news 攝影師 AbsolutVision、banner-contact 攝影師 Radisson US
+- Logo：`public/images/logo-mark.png`（Header 用，含 tagline 裁切版）、`logo-full.png`（含「Bio Venture」tagline，供較大版位使用）、`logo-*-on-dark.png`（深色背景版，NovaRadar 字樣改白色、R 字母維持青綠色，供 Footer 深藍底使用）。原始向量檔為 `NovaRada Data/NovaRadar_Logo_向量檔_確認用.pdf`（2026-09-07 客戶確認版），因本機無 PDF 轉 SVG 工具，改用 `pdfjs-dist` + `@napi-rs/canvas` 高解析度點陣化後以 `sharp` 去背/裁切產生，非真正向量檔；若之後拿到 AI/EPS/SVG 原始檔應改用向量版本重新輸出
 - 詳細架構規劃見 `content-model.md` 與對應 plan 文件
 
 ## 三語策略
@@ -31,7 +32,9 @@
 
 ## 品牌色票
 
-- 待補（Primary / Secondary / Accent / 中性色階，含 Hex 與用途說明）
+- Primary（深藍）`#0c344c`、Secondary（青綠）`#04948c`：2026-09-07 依官方 logo 向量檔（`NovaRadar_Logo_向量檔_確認用.pdf`）校正，定義於 `app/globals.css` 的 `--brand-primary` / `--brand-secondary`
+- Accent（金色）`#c9a227`：沿用先前暫代值，logo 本身無強調色可對照，待品牌手冊定案
+- 中性色階：待補
 
 ## 字型
 
@@ -43,7 +46,7 @@
 
 ## 待辦
 
-- [ ] 補上品牌色票（Hex 值）
+- [x] 補上品牌色票（Primary/Secondary Hex 值，2026-09-07）
 - [ ] 補上字型名稱與來源
 - [ ] 補上語氣規範與文案範例
 - [ ] 法務/合規確認資料是否須留台灣主機，決定是否維持 Sanity + Vercel

@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 /*
- * 品牌色票／字型尚未定案（見 CLAUDE.md 待補章節）。
- * 以下為暫代 token，之後品牌手冊定案後只需改這裡的值，元件不需重寫。
+ * Primary/Secondary 已依官方 logo 向量檔（2026-09-07 確認版）校正；
+ * Accent 與字型仍待品牌手冊定案（見 CLAUDE.md 待補章節）。
  */
 :root {
   --background: #f7f7f5;
   --foreground: #1a1a1a;
 
-  --brand-primary: #0b2c4d;
+  --brand-primary: #0c344c;
   --brand-primary-light: #1c4870;
-  --brand-secondary: #0f5c4e;
+  --brand-secondary: #04948c;
   --brand-accent: #c9a227;
 
   --brand-neutral-50: #f7f7f5;
