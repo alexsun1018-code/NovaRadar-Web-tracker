@@ -12,11 +12,11 @@ export default async function Footer() {
     <footer className="border-t border-brand-neutral-100 bg-brand-primary text-brand-neutral-50">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 py-10 text-center sm:px-6 lg:px-8">
         <Image
-          src="/images/logo-mark-on-dark.png"
-          alt="NovaRadar"
-          width={160}
-          height={24}
-          className="h-6 w-auto"
+          src="/images/logo-full-on-dark.png"
+          alt="NovaRadar Bio Venture"
+          width={1400}
+          height={363}
+          className="h-16 w-auto"
         />
 
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">

@@ -1,55 +1,64 @@
 {
   "_meta": {
     "content_type": "value-proposition",
-    "schema_status": "首頁專屬新型別，非 content-model.md 既有列表，屬假設性行銷文案，待行銷/品牌確認後更新",
-    "source": "依 data/pages/company-intro.md 公司簡介文字推導",
-    "fields": ["order", "image", "title_zhTW", "title_en", "description_zhTW", "description_en"],
-    "image_source": "取自 Unsplash（Unsplash License，免費商用免署名），詳見各筆 image_credit。之後若要換圖，同樣需確認來源授權可商用"
+    "schema_status": "首頁專屬新型別，非 content-model.md 既有列表",
+    "source": "2026-09-07 依客戶提供簡報「MitoBitTech management team website.pptx」第 2 頁「What Differentiating NovaRadar to Accelerate Success」置換原本 4 項假設性文案，改為 6 項；英文為簡報原文（權威來源），繁中為翻譯",
+    "fields": ["order", "icon", "title_zhTW", "title_en", "description_zhTW", "description_en"]
   },
   "items": [
     {
-      "id": "value-global",
-      "_placeholder": true,
+      "id": "value-operator-first",
       "order": 1,
-      "image": "/images/value-global-vision.jpg",
-      "image_credit": "Photo by Mario Verduzco on Unsplash",
-      "title_zhTW": "全球視野",
-      "title_en": "Global Perspective",
-      "description_zhTW": "鎖定全球具國際競爭力的生技醫療投資標的。",
-      "description_en": "Targeting globally competitive biotech and healthcare investment opportunities."
+      "icon": "wrench",
+      "title_zhTW": "營運者思維的創投",
+      "title_en": "Operator-First VC",
+      "description_zhTW": "瑞大生技由新藥開發人員、生醫專業人士與連續創業家共同創立。",
+      "description_en": "NovaRadar is built by drug developers, biomedical professionals, and serial entrepreneurs."
     },
     {
-      "id": "value-team",
-      "_placeholder": true,
+      "id": "value-cmc-advantage",
       "order": 2,
-      "image": "/images/value-team.jpg",
-      "image_credit": "Photo by Vitaly Gariev on Unsplash",
-      "title_zhTW": "跨界專業團隊",
-      "title_en": "Cross-Disciplinary Expert Team",
-      "description_zhTW": "核心經理人具備生醫博士與國際財務分析師的複合背景。",
-      "description_en": "Our core team combines biomedical PhDs with international financial analyst expertise."
+      "icon": "flask",
+      "title_zhTW": "CMC 是競爭優勢",
+      "title_en": "CMC Is a Competitive Advantage",
+      "description_zhTW": "超過六成的生技延遲源自 CMC（化學、製造與管制），卻鮮少有人重視。瑞大生技協助企業降低 CMC 與法規風險，避免價值折損。",
+      "description_en": "Over 60% of biotech delays originate from CMC — yet almost nobody emphasizes it. NovaRadar helps companies avoid value destruction by mitigating CMC and regulatory risk."
     },
     {
-      "id": "value-strategy",
-      "_placeholder": true,
+      "id": "value-speed-to-poc",
       "order": 3,
-      "image": "/images/value-risk-control.jpg",
-      "image_credit": "Photo by Stephen Dawson on Unsplash",
-      "title_zhTW": "主動式風控策略",
-      "title_en": "Active Risk-Control Strategy",
-      "description_zhTW": "採主動式、全球化、風險平衡的投資策略。",
-      "description_en": "An active, globally-oriented, risk-balanced investment strategy."
+      "icon": "rocket",
+      "title_zhTW": "加速臨床概念驗證",
+      "title_en": "Speed to Clinical Proof of Concept",
+      "description_zhTW": "不只優化 IRR，瑞大生技更著重縮短達到關鍵價值反曲點的時間。",
+      "description_en": "Not only optimizing IRR — NovaRadar optimizes time to the key value inflection point."
     },
     {
-      "id": "value-sustainability",
-      "_placeholder": true,
+      "id": "value-cross-border",
       "order": 4,
-      "image": "/images/value-sustainability.jpg",
-      "image_credit": "Photo by Sarah Dorweiler on Unsplash",
-      "title_zhTW": "永續共榮",
-      "title_en": "Sustainable Co-Prosperity",
-      "description_zhTW": "科學求真、守護生命，與被投企業共創長期穩健價值。",
-      "description_en": "Scientific rigor and protecting life — creating long-term, stable value together with our portfolio companies."
+      "icon": "globe",
+      "title_zhTW": "跨國執行與資源整合",
+      "title_en": "Cross-Border Execution & Resource Integration",
+      "description_zhTW": "許多創投宣稱全球佈局，真正具備全球營運能力的卻不多。瑞大生技串連美國、台灣與歐洲的科學、CMC、臨床開發、量產、商業開發與資本。",
+      "description_en": "Many VC funds invest globally. Few actually operate globally. NovaRadar connects the US, Taiwan, and Europe through science, CMC, clinical development, manufacturing, BD, and capital."
+    },
+    {
+      "id": "value-exit-driven",
+      "order": 5,
+      "icon": "target",
+      "title_zhTW": "藥廠商業化思維與出場導向投資",
+      "title_en": "Pharma Commercialization Mindset & Exit-Driven Investing",
+      "description_zhTW": "多數早期創投著眼於技術本身，瑞大生技則從商業化產品角度思考：能否量產？能否取得 FDA 核准？能否吸引藥廠併購？",
+      "description_en": "Most early-stage VCs think technology. NovaRadar thinks commercial product — can it scale, manufacture, gain FDA approval, and attract a pharma acquirer?"
+    },
+    {
+      "id": "value-active-partner",
+      "order": 6,
+      "icon": "handshake",
+      "title_zhTW": "積極營運夥伴模式",
+      "title_en": "Active Operating Partner Model",
+      "description_zhTW": "多數創投僅透過董事會參與治理，瑞大生技提供積極的營運指導與陪伴。",
+      "description_en": "Most VCs participate only through board governance. NovaRadar provides active operating mentorship."
     }
   ]
 }

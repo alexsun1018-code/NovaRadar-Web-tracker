@@ -1,11 +1,11 @@
 ## Company Overview
 
-NovaRadar Bio Venture Corporation is a sustainability-focused venture capital firm dedicated to the world's leading edge of biomedicine. Guided by our mission of "scientific rigor, protecting life, sustainable co-prosperity," NovaRadar focuses on biotech and healthcare investment, targeting globally competitive opportunities across new drug development, advanced medical devices, smart precision medicine, innovative cell therapy, and digital healthcare distribution services.
+NovaRadar Bio Venture is an operator-first venture capital firm built by drug developers, biomedical professionals, and serial entrepreneurs, with reach across Taiwan, the US, and Europe. We identify scientifically strong but undercapitalized biomedical programs and provide hands-on operating support — spanning CMC, regulatory strategy, clinical development, and manufacturing — to accelerate them toward clinical proof-of-concept and successful exits. Our strategic focus spans early cancer detection, novel target drug development, rare genetic diseases, and neurological disorders, guided by a leadership team and global Scientific and Strategic Advisory Board with deep biopharma operating experience across Taiwan, the US, and Europe.
 
 ## Vision
 
 To become the most trusted sustainable venture capital platform across the Asia-Pacific region and beyond, bridging frontier science with commercial value.
 
-## Mission
+## Our Mission
 
-To cultivate rising stars in biomedicine, address unmet medical needs, create patient well-being, and deliver outstanding, long-term, stable returns to our shareholders.
+Investing in novel technologies to advance healthcare and quality of life.

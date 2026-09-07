@@ -2,13 +2,10 @@ export interface HeroSlide {
   id: string;
   order: number;
   title_zhTW: string;
-  title_zhCN?: string;
   title_en?: string;
   subtitle_zhTW: string;
-  subtitle_zhCN?: string;
   subtitle_en?: string;
   ctaLabel_zhTW: string;
-  ctaLabel_zhCN?: string;
   ctaLabel_en?: string;
   ctaHref: string;
   background: { type: string; from: string; to: string };
@@ -17,12 +14,10 @@ export interface HeroSlide {
 export interface ValueProp {
   id: string;
   order: number;
-  image: string;
+  icon: string;
   title_zhTW: string;
-  title_zhCN?: string;
   title_en?: string;
   description_zhTW: string;
-  description_zhCN?: string;
   description_en?: string;
 }
 
@@ -33,7 +28,6 @@ export interface PortfolioCompany {
   slug: string;
   status: "draft" | "published" | "archived";
   company_name_zhTW: string;
-  company_name_zhCN?: string;
   company_name_en?: string;
   logo: string;
   sector: PortfolioSector[];
@@ -41,7 +35,6 @@ export interface PortfolioCompany {
   investment_stage?: string;
   website_url?: string;
   description_zhTW?: string;
-  description_zhCN?: string;
   description_en?: string;
   is_exited: boolean;
   featured: boolean;
@@ -51,10 +44,8 @@ export interface PortfolioCompany {
 export interface HistoryMilestone {
   date: string;
   title_zhTW: string;
-  title_zhCN?: string;
   title_en?: string;
   description_zhTW?: string;
-  description_zhCN?: string;
   description_en?: string;
 }
 
@@ -68,14 +59,11 @@ export interface TeamMember {
   slug: string;
   status: "draft" | "published" | "archived";
   name_zhTW: string;
-  name_zhCN?: string;
   name_en?: string;
   title_zhTW: string;
-  title_zhCN?: string;
   title_en?: string;
   photo: string;
   bio_zhTW?: string;
-  bio_zhCN?: string;
   bio_en?: string;
   department?: "董事會" | "經營團隊" | "投資顧問";
   linkedin_url?: string;
@@ -96,19 +84,15 @@ export interface NewsArticle {
   slug: string;
   status: "draft" | "published" | "archived";
   title_zhTW: string;
-  title_zhCN?: string;
   title_en?: string;
   publish_date: string;
   category: NewsCategory;
   cover_image?: string;
   summary_zhTW?: string;
-  summary_zhCN?: string;
   summary_en?: string;
   content_zhTW: string;
-  content_zhCN?: string;
   content_en?: string;
   source_name_zhTW?: string;
-  source_name_zhCN?: string;
   source_name_en?: string;
   source_url?: string;
   attachment?: string;
@@ -127,12 +111,10 @@ export interface MaterialDisclosure {
   status: "draft" | "published" | "archived";
   announcement_no?: string;
   title_zhTW: string;
-  title_zhCN?: string;
   title_en?: string;
   disclosure_date: string;
   category: DisclosureCategory;
   content_zhTW: string;
-  content_zhCN?: string;
   content_en?: string;
   attachment?: string;
 }
@@ -140,13 +122,10 @@ export interface MaterialDisclosure {
 export interface ContactInfo {
   phone: string;
   address_zhTW: string;
-  address_zhCN?: string;
   address_en?: string;
   contact_person_name_zhTW: string;
-  contact_person_name_zhCN?: string;
   contact_person_name_en?: string;
   contact_person_title_zhTW: string;
-  contact_person_title_zhCN?: string;
   contact_person_title_en?: string;
   email: string;
 }

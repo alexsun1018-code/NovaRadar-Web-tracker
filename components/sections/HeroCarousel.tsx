@@ -50,11 +50,11 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideView[] }) {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      {/* 背景圖片（生技實驗室，Unsplash License 免費商用）*/}
+      {/* 背景圖片（客戶提供的分子意象圖，data/hero-slides.json 同批 2026-09-07 素材）*/}
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: "url(/images/hero-bg-lab.jpg)",
+          backgroundImage: "url(/images/hero-bg-slogan.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -64,19 +64,13 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideView[] }) {
         className="absolute inset-0 transition-opacity duration-500"
         style={{
           background: `linear-gradient(135deg, var(--${slide.background.from}), var(--${slide.background.to}))`,
-          opacity: 0.62,
+          opacity: 0.45,
         }}
       />
-      {/* 文字區域左側加深，確保與圖片重疊處仍可辨識，右側維持透明讓圖片清楚 */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0) 75%)",
-        }}
-      />
+      {/* 文字置中，統一加深整體背景以確保與圖片重疊處仍可辨識 */}
+      <div className="absolute inset-0 bg-black/45" />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-4 py-24 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           {slide.isFallback && (
             <p className="mb-3 inline-block rounded-full bg-white/15 px-3 py-1 text-xs">

@@ -7,7 +7,7 @@ export default function EsgPage() {
     <>
       <Header />
       <main className="flex-1">
-        <ComingSoonPage titleKey="esg" />
+        <ComingSoonPage titleKey="esg" variant="esg" />
       </main>
       <Footer />
     </>

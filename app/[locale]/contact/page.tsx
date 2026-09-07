@@ -8,7 +8,6 @@ import Footer from "@/components/layout/Footer";
 import PageHeaderBanner from "@/components/layout/PageHeaderBanner";
 import StaticPageBody from "@/components/sections/StaticPageBody";
 import ContactInfoBlock from "@/components/sections/ContactInfoBlock";
-import ProposalForm from "@/components/sections/ProposalForm";
 
 export default async function ContactPage() {
   const locale = (await getLocale()) as Locale;
@@ -42,7 +41,6 @@ export default async function ContactPage() {
             contactPersonTitle: contactPersonTitle.value,
           }}
         />
-        <ProposalForm />
       </main>
       <Footer />
     </>

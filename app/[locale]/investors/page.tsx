@@ -7,7 +7,7 @@ export default function InvestorsPage() {
     <>
       <Header />
       <main className="flex-1">
-        <ComingSoonPage titleKey="investors" />
+        <ComingSoonPage titleKey="investors" variant="investors" />
       </main>
       <Footer />
     </>

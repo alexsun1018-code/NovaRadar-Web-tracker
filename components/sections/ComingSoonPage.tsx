@@ -1,10 +1,12 @@
 import { getTranslations } from "next-intl/server";
-import Icon from "@/components/ui/Icon";
+import ComingSoonIllustration from "@/components/ui/ComingSoonIllustration";
 
 export default async function ComingSoonPage({
   titleKey,
+  variant,
 }: {
   titleKey: string;
+  variant: "esg" | "investors" | "careers" | "auth";
 }) {
   const t = await getTranslations("Nav");
   const tComingSoon = await getTranslations("ComingSoonPage");
@@ -12,9 +14,7 @@ export default async function ComingSoonPage({
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col items-center px-4 py-24 text-center sm:px-6 lg:px-8">
-      <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">
-        <Icon name="clock" className="h-8 w-8" />
-      </span>
+      <ComingSoonIllustration variant={variant} />
       <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-brand-accent">
         {tCommon("comingSoon")}
       </p>

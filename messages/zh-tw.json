@@ -7,6 +7,7 @@
     "leadershipTeam": "經營團隊",
     "investmentStrategy": "投資策略",
     "portfolio": "投資組合",
+    "team": "團隊",
     "news": "新聞中心",
     "newsGeneral": "相關新聞",
     "newsDisclosures": "重大訊息",
@@ -14,11 +15,14 @@
     "investors": "投資人專區",
     "careers": "人力資源",
     "contact": "聯絡我們",
+    "login": "登入",
+    "signup": "註冊",
     "legalDisclaimer": "特別聲明",
     "legalPrivacyPolicy": "隱私權政策"
   },
   "Common": {
     "comingSoon": "建置中",
+    "soonBadge": "建置中",
     "notTranslated": "此內容尚未提供英文版本，暫以繁體中文顯示。",
     "learnMore": "了解更多",
     "allYears": "全部"
@@ -59,6 +63,10 @@
   "ComingSoonPage": {
     "subtitle": "本頁面內容準備中，敬請期待。"
   },
+  "TeamPage": {
+    "advisors": "顧問（台灣、美國、歐洲）",
+    "backToTeam": "返回團隊列表"
+  },
   "Hero": {
     "pause": "暫停輪播",
     "play": "繼續播放",
@@ -68,7 +76,7 @@
   },
   "ValueProps": {
     "title": "為什麼選擇瑞大",
-    "subtitle": "以科學求真的態度，守護生命、永續共榮"
+    "subtitle": "以營運者思維，加速生技新創成功"
   },
   "Portfolio": {
     "title": "投資組合",
@@ -79,6 +87,66 @@
     "tabs": {
       "drugRnD": "新藥研發",
       "medtechOther": "醫療技術及其他"
+    }
+  },
+  "ClinicalBridge": {
+    "title": "The Clinical-Value Bridge",
+    "subtitle": "投資尚未獲得足夠資本的科學，並推動其邁向關鍵轉折點。",
+    "steps": {
+      "source": {
+        "label": "Source",
+        "description": "找出美國、歐洲與台灣科學實力堅強、卻資本不足的開發案。"
+      },
+      "bridge": {
+        "label": "Bridge",
+        "description": "以台灣作為根據地，發揮資本效率、區域臨床試驗能量與營運指導優勢。"
+      },
+      "accelerate": {
+        "label": "Accelerate",
+        "description": "規劃通往臨床概念驗證的務實捷徑。"
+      },
+      "exit": {
+        "label": "Exit",
+        "description": "加速 IPO 準備，或串接大型藥廠併購機會。"
+      }
+    }
+  },
+  "WeInvestIn": {
+    "title": "We Invest In",
+    "items": {
+      "marketGap": {
+        "label": "Market Gap",
+        "description": "重點領域與區域中尚未被滿足的需求，創造創新與成長的強勁契機。"
+      },
+      "techInnovation": {
+        "label": "Technology Innovation",
+        "description": "新興技術正在改變病患照護、診斷與治療方式。"
+      },
+      "domainExpertise": {
+        "label": "Domain Expertise",
+        "description": "具科學研發、產品開發與產業領導實績的專家級創業團隊。"
+      }
+    }
+  },
+  "StrategicFocus": {
+    "title": "Strategic Focus Areas",
+    "areas": {
+      "cancer": {
+        "label": "Early Cancer Detection & Treatment",
+        "description": "新型生物標記發現，運用液態切片或 AI 技術，邁向精準醫療的創新方案。"
+      },
+      "targetDrug": {
+        "label": "Novel Target Drug Development",
+        "description": "聚焦現有治療限制的新興領域，尤其受惠於基因體學、蛋白質體學、AI 與系統生物學的進展。"
+      },
+      "rareDisease": {
+        "label": "Rare Genetic Diseases",
+        "description": "具明確生物標記與可辨識病患族群。"
+      },
+      "neuro": {
+        "label": "Neurological Disorders Treatment",
+        "description": "同時針對診斷與治療，鎖定多重致病路徑。"
+      }
     }
   },
   "ProposalForm": {

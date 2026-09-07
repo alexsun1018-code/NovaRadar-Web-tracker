@@ -22,6 +22,7 @@ export const mainNav: NavItem[] = [
     ],
   },
   { key: "portfolio", href: "/portfolio", status: "active" },
+  { key: "team", href: "/about/leadership-team", status: "active" },
   {
     key: "news",
     href: "/news/general",
@@ -31,10 +32,13 @@ export const mainNav: NavItem[] = [
       { key: "newsDisclosures", href: "/news/disclosures", status: "active" },
     ],
   },
-  { key: "esg", href: "/esg", status: "placeholder" },
-  { key: "investors", href: "/investors", status: "placeholder" },
-  { key: "careers", href: "/careers", status: "placeholder" },
   { key: "contact", href: "/contact", status: "active" },
+];
+
+// 保留給外部（投資人）／內部人員登入其他功能使用，後台尚未建置，暫連到 Coming soon 頁
+export const authNav: NavItem[] = [
+  { key: "login", href: "/login", status: "placeholder" },
+  { key: "signup", href: "/signup", status: "placeholder" },
 ];
 
 export const legalNav: NavItem[] = [

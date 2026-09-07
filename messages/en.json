@@ -7,18 +7,22 @@
     "leadershipTeam": "Leadership Team",
     "investmentStrategy": "Investment Strategy",
     "portfolio": "Portfolio",
+    "team": "Team",
     "news": "News",
     "newsGeneral": "News Report",
     "newsDisclosures": "Announcements",
     "esg": "ESG",
     "investors": "Investors",
     "careers": "Careers",
-    "contact": "Contact Us",
+    "contact": "Contact",
+    "login": "Login",
+    "signup": "Sign Up",
     "legalDisclaimer": "Disclaimer",
     "legalPrivacyPolicy": "Privacy Policy"
   },
   "Common": {
     "comingSoon": "Coming soon",
+    "soonBadge": "Soon",
     "notTranslated": "This content is not yet available in English and is shown in Traditional Chinese.",
     "learnMore": "Learn more",
     "allYears": "All years"
@@ -59,6 +63,10 @@
   "ComingSoonPage": {
     "subtitle": "This page is being prepared. Please check back soon."
   },
+  "TeamPage": {
+    "advisors": "Advisors (Taiwan, USA, EU)",
+    "backToTeam": "Back to Team"
+  },
   "Hero": {
     "pause": "Pause carousel",
     "play": "Resume carousel",
@@ -68,7 +76,7 @@
   },
   "ValueProps": {
     "title": "Why NovaRadar",
-    "subtitle": "Scientific rigor, protecting life, sustainable co-prosperity"
+    "subtitle": "The operator-led approach that accelerates biotech success"
   },
   "Portfolio": {
     "title": "Portfolio",
@@ -79,6 +87,66 @@
     "tabs": {
       "drugRnD": "Drug R&D",
       "medtechOther": "MedTech & Other"
+    }
+  },
+  "ClinicalBridge": {
+    "title": "The Clinical-Value Bridge",
+    "subtitle": "Investing in undercapitalized science and driving it to inflection.",
+    "steps": {
+      "source": {
+        "label": "Source",
+        "description": "Identify scientifically strong but undercapitalized programs in the US, Europe, and Taiwan."
+      },
+      "bridge": {
+        "label": "Bridge",
+        "description": "Leverage the Taiwan home-market anchor for capital efficiency, regional trial capabilities, and operational mentoring."
+      },
+      "accelerate": {
+        "label": "Accelerate",
+        "description": "Define a short, realistic path to clinical proof-of-concept."
+      },
+      "exit": {
+        "label": "Exit",
+        "description": "Accelerate IPO readiness or connect to major pharma M&A opportunities."
+      }
+    }
+  },
+  "WeInvestIn": {
+    "title": "We Invest In",
+    "items": {
+      "marketGap": {
+        "label": "Market Gap",
+        "description": "Unmet needs in key sectors and regions create strong opportunities for innovation and growth."
+      },
+      "techInnovation": {
+        "label": "Technology Innovation",
+        "description": "Emerging technologies transform patient care, diagnostics, and treatment."
+      },
+      "domainExpertise": {
+        "label": "Domain Expertise",
+        "description": "Expert founders with a track record in science, product development, and industry leadership."
+      }
+    }
+  },
+  "StrategicFocus": {
+    "title": "Strategic Focus Areas",
+    "areas": {
+      "cancer": {
+        "label": "Early Cancer Detection & Treatment",
+        "description": "Novel biomarker discovery, technologies using liquid biopsies or AI. Innovative technologies toward precision medicine."
+      },
+      "targetDrug": {
+        "label": "Novel Target Drug Development",
+        "description": "Emerging areas addressing current limitations in treatment, especially with advancement in genomics, proteomics, AI and system biology."
+      },
+      "rareDisease": {
+        "label": "Rare Genetic Diseases",
+        "description": "Clear biomarkers and identifiable patient populations."
+      },
+      "neuro": {
+        "label": "Neurological Disorders Treatment",
+        "description": "Targeting multiple pathways for both diagnosis and treatment."
+      }
     }
   },
   "ProposalForm": {
