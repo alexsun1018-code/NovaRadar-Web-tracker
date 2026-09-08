@@ -37,7 +37,11 @@ export default async function TeamMemberPage({
   return (
     <>
       <Header />
-      <PageHeaderBanner title={name.value} image="/images/banner-about.jpg" />
+      <PageHeaderBanner
+        title={name.value}
+        image="/images/banner-team.jpg"
+        imagePosition="center 18%"
+      />
       <main className="flex-1">
         <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
           <Link

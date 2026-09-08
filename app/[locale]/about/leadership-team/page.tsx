@@ -37,7 +37,11 @@ export default async function LeadershipTeamPage() {
   return (
     <>
       <Header />
-      <PageHeaderBanner title={t("leadershipTeam")} image="/images/banner-about.jpg" />
+      <PageHeaderBanner
+        title={t("leadershipTeam")}
+        image="/images/banner-team.jpg"
+        imagePosition="center 18%"
+      />
       <main className="flex-1">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-brand-primary">
