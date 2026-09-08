@@ -27,7 +27,7 @@
     {
       "id": "value-speed-to-poc",
       "order": 3,
-      "icon": "rocket",
+      "icon": "clock",
       "title_zhTW": "加速臨床概念驗證",
       "title_en": "Speed to Clinical Proof of Concept",
       "description_zhTW": "不只優化 IRR，瑞大生技更著重縮短達到關鍵反曲點所需的時間。",
@@ -45,7 +45,7 @@
     {
       "id": "value-exit-driven",
       "order": 5,
-      "icon": "target",
+      "icon": "briefcase",
       "title_zhTW": "藥廠商業化思維與出場導向投資",
       "title_en": "Pharma Commercialization Mindset & Exit-Driven Investing",
       "description_zhTW": "瑞大生技不只從技術角度思考，而是以產品角度出發：能否量產？能否符合商業化量產品質？能否取得 FDA 核准？能否吸引藥廠併購？",

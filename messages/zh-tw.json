@@ -77,8 +77,8 @@
     "goToSlide": "前往第 {index} 張"
   },
   "ValueProps": {
-    "title": "為什麼選擇瑞大",
-    "subtitle": "以營運者思維，加速生技新創從科學走向臨床驗證"
+    "title": "營運者思維著手",
+    "subtitle": "加速生技新創從科學走向臨床驗證"
   },
   "Portfolio": {
     "title": "投資組合",
@@ -92,61 +92,61 @@
     }
   },
   "ClinicalBridge": {
-    "title": "The Clinical-Value Bridge",
+    "title": "臨床價值橋樑",
     "subtitle": "投資尚未獲得足夠資本的科學，並推動其邁向關鍵轉折點。",
     "steps": {
       "source": {
-        "label": "Source",
+        "label": "尋源",
         "description": "找出美國、歐洲與台灣科學實力堅強、卻資本不足的開發案。"
       },
       "bridge": {
-        "label": "Bridge",
+        "label": "橋接",
         "description": "以台灣作為根據地，發揮資本效率、區域臨床試驗能量與營運指導優勢。"
       },
       "accelerate": {
-        "label": "Accelerate",
+        "label": "加速",
         "description": "規劃通往臨床概念驗證的務實捷徑。"
       },
       "exit": {
-        "label": "Exit",
+        "label": "出場",
         "description": "加速 IPO 準備，或串接大型藥廠併購機會。"
       }
     }
   },
   "WeInvestIn": {
-    "title": "We Invest In",
+    "title": "投資領域",
     "items": {
       "marketGap": {
-        "label": "Market Gap",
+        "label": "市場缺口",
         "description": "重點領域與區域中尚未被滿足的需求，創造創新與成長的強勁契機。"
       },
       "techInnovation": {
-        "label": "Technology Innovation",
+        "label": "技術創新",
         "description": "新興技術正在改變病患照護、診斷與治療方式。"
       },
       "domainExpertise": {
-        "label": "Domain Expertise",
+        "label": "領域專業",
         "description": "具科學研發、產品開發與產業領導實績的專家級創業團隊。"
       }
     }
   },
   "StrategicFocus": {
-    "title": "Strategic Focus Areas",
+    "title": "策略聚焦領域",
     "areas": {
       "cancer": {
-        "label": "Early Cancer Detection & Treatment",
+        "label": "早期癌症偵測與治療",
         "description": "新型生物標記發現，運用液態切片或 AI 技術，邁向精準醫療的創新方案。"
       },
       "targetDrug": {
-        "label": "Novel Target Drug Development",
+        "label": "新標的藥物開發",
         "description": "聚焦現有治療限制的新興領域，尤其受惠於基因體學、蛋白質體學、AI 與系統生物學的進展。"
       },
       "rareDisease": {
-        "label": "Rare Genetic Diseases",
+        "label": "罕見遺傳疾病",
         "description": "具明確生物標記與可辨識病患族群。"
       },
       "neuro": {
-        "label": "Neurological Disorders Treatment",
+        "label": "神經系統疾病治療",
         "description": "同時針對診斷與治療，鎖定多重致病路徑。"
       }
     }

@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import Icon, { type IconName } from "@/components/ui/Icon";
 
 const items: { key: string; icon: IconName }[] = [
-  { key: "marketGap", icon: "target" },
+  { key: "marketGap", icon: "compass" },
   { key: "techInnovation", icon: "lightbulb" },
   { key: "domainExpertise", icon: "users" },
 ];
@@ -15,8 +15,8 @@ const items: { key: string; icon: IconName }[] = [
 // （客戶另外明確指示取消，統一與其餘內文同色）
 const focusAreas: { key: string; icon: IconName; column: "left" | "right"; row: 0 | 1 }[] = [
   { key: "cancer", icon: "barChart", column: "left", row: 0 },
-  { key: "targetDrug", icon: "lightbulb", column: "right", row: 0 },
-  { key: "neuro", icon: "leaf", column: "left", row: 1 },
+  { key: "targetDrug", icon: "pill", column: "right", row: 0 },
+  { key: "neuro", icon: "brain", column: "left", row: 1 },
   { key: "rareDisease", icon: "shield", column: "right", row: 1 },
 ];
 // 中央 2x2 花瓣圖示叢排列順序（左上／右上／左下／右下），每個花瓣尖角朝向叢集中心
