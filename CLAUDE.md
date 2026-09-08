@@ -1,4 +1,103 @@
-# NovaRadar Web 專案規範
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Commands
+
+```bash
+npm run dev      # Turbopack dev server on http://localhost:3000
+npm run build    # production build
+npm run start    # serve the production build
+npm run lint     # eslint (eslint-config-next core-web-vitals + typescript)
+npx tsc --noEmit # type-check; there is no separate `typecheck` script
+```
+
+There is no automated test suite (no Jest/Vitest/Playwright test files, even though `playwright` is a
+devDependency — it is only used ad hoc for screenshot verification during development). Verify changes with
+`npx tsc --noEmit`, `npm run lint`, and by driving the dev server manually.
+
+After UI changes, prefer `rm -rf .next` before restarting `next dev` if something looks stale — Next's dev
+image-optimization cache keys optimized images by URL path, not file content, so replacing an image file (e.g.
+`public/images/team/charlene-hu.jpg`) under an unchanged filename can keep serving the old cached version.
+
+## Architecture
+
+**Stack**: Next.js (App Router) + `next-intl` for i18n + Tailwind CSS v4. Deployed on Vercel. No database yet —
+content is local JSON/Markdown under `data/`, read through a typed fetcher layer so a future CMS swap (Sanity is
+the planned target; schema mirrors `content-model.md`) only requires rewriting `lib/cms/*.ts`, not callers.
+
+**Routing**: every page lives under `app/[locale]/...`; `proxy.ts` (the middleware) wraps `next-intl`'s
+`createMiddleware(routing)` to resolve/redirect the locale prefix. `i18n/routing.ts` defines `locales` (`zh-tw`,
+`en`), `defaultLocale` (`en`), and `localePrefix: "always"`. `i18n/navigation.ts` re-exports locale-aware
+`Link`/`useRouter`/`usePathname` — use these instead of `next/link` inside `[locale]` routes so the locale prefix
+is preserved automatically.
+
+**Content layer** (`lib/cms/*.ts`): one file per content type (`hero.ts`, `team.ts`, `pages.ts`, `news.ts`,
+`disclosures.ts`, `companyHistory.ts`, `contactInfo.ts`, `valueProps.ts`, `portfolio.ts`), each exporting
+`async` getters that currently just import the matching `data/*.json` file. Shapes are declared once in
+`lib/cms/types.ts`. Pages call these getters, map the result through `localizedField()`, and pass plain view
+objects into client components.
+
+**Two separate bilingual patterns — don't mix them up**:
+- *Structured content records* (`data/*.json`, e.g. team members, value props, hero slides) store paired fields
+  `{name}_zhTW` / `{name}_en`. `lib/i18n/localizedField.ts` resolves them: zh-tw is always authoritative; en falls
+  back to the zh-tw value and sets `isFallback: true` when the `_en` field is missing/empty (callers typically
+  render a "not yet translated" badge in that case).
+- *Full static pages* (`data/pages/{slug}.md`, e.g. company-intro, contact) are plain Markdown with frontmatter,
+  parsed via `gray-matter` + `marked` in `lib/cms/pages.ts`. `{slug}.md` is the zh-tw source of truth; an optional
+  `{slug}.en.md` is a hand-translated override. `getStaticPage()` reads `{slug}.en.md` when it exists, else falls
+  back to the zh-tw file with `isFallback: true`.
+- *UI chrome / marketing copy* (nav labels, section headings, button text, short card labels/descriptions) lives
+  in `messages/{locale}.json`, consumed via `next-intl`'s `useTranslations`/`getTranslations` — this is separate
+  from both content patterns above and has no fallback mechanism, so every key must exist in both `en.json` and
+  `zh-tw.json`.
+
+**Nav config vs. locale list**: `lib/nav/config.ts` defines `mainNav`/`authNav`/`legalNav` independent of which
+routes actually exist — a nav entry can be removed without deleting the page (see "orphaned code" below), and
+`status: "placeholder"` pages render a `ComingSoonPage`. `Header.tsx`'s language-switcher display order
+(`localeMenuOrder`) is intentionally a separate constant from `i18n/routing.ts`'s `routing.locales` (which drives
+routing/`generateStaticParams` order) — changing display order should not touch the routing array.
+
+**Orphaned code convention**: when a feature/section is removed from the live site per client instruction, the
+component/route/data file is generally left in place (not deleted) unless told otherwise, and the removal +
+reason is noted in the Change Log below. Check there before assuming a file is dead weight — it may be
+intentionally preserved for a possible future re-hookup.
+
+**Brand tokens**: colors are CSS custom properties in `app/globals.css` (`--brand-primary`, `--brand-secondary`,
+`--brand-accent`, `--section-*-50`, `--brand-neutral-*`), mapped into Tailwind via `@theme`/`--color-*` in the
+same file — use the Tailwind classes (`bg-brand-primary`, etc.), not raw hex values, in components.
+
+**Icons**: `components/ui/Icon.tsx` is a single hand-drawn SVG line-icon set (`viewBox 0 0 24 24`, stroke-based);
+add new glyphs there rather than pulling in an icon library. Homepage sections currently draw from one shared
+icon pool across ValueProps/ClinicalValueBridge/WeInvestIn/StrategicFocus — keep icon choices unique across all
+of them (see the icon-review entry in the Change Log for the reasoning already applied).
+
+**Path alias**: `@/*` → repo root (`tsconfig.json`).
+
+## Content & Translation Conventions
+
+- zh-tw is the sole authoritative language and should read as human-written; en is a translation that may lag
+  behind. For long-form content (bios, static pages) still awaiting a client-provided translation, the
+  convention is to place the zh-tw text (or leave the field empty, triggering the fallback above) rather than
+  inventing wording — but short marketing copy (section titles, card labels/descriptions) has been translated
+  directly in past sessions when the client supplied only English source material. See the Change Log for which
+  fields are still pending official translation.
+- Image/video assets must be commercially licensed (Unsplash License, Pexels License, or client-supplied
+  originals) — never use a paid stock site's preview/watermarked image, even if the client forwards it labeled
+  "high-res"; check embedded XMP/EXIF metadata for a stock-agency credit before use. See the Change Log for a
+  concrete instance where a client-supplied "high-res" file turned out to be a low-res watermarked Getty preview.
+- Client source material (PPTX decks, screenshots) lives in `../NovaRada Data/` (one level above this repo). PPTX
+  files have no PowerPoint/LibreOffice available locally to open them — extract text via `unzip` (a `.pptx` is a
+  zip) and grep `ppt/slides/slideN.xml` for `<a:t>...</a:t>` runs; extract images from `ppt/media/`.
+
+---
+
+## Change Log
+
+The sections below are a running, dated record of product/content decisions made per client instruction —
+kept because the reasoning (why an approach was rejected, what a client said, what a source file actually
+contained) is not recoverable by re-reading the current code. Skim the relevant section before re-touching an
+area to avoid re-litigating a decision that was already tried and rejected.
 
 ## 技術路線
 
@@ -23,7 +122,7 @@
 
 依客戶指示：
 
-- **ValueProps 區塊**（`components/sections/ValueProps.tsx`）：2026-09-08 一度移除「Why NovaRadar」標題、原副標題升級為唯一 `h2` 主標題；同日稍晚客戶指示比照 The Clinical-Value Bridge 的「主標題＋次要說明文字」兩階版面，改回 `h2`（`ValueProps.title`＝「An Operator-led Approach」／「營運者思維的方法」）＋ `p`（`ValueProps.subtitle`＝「Moving biotech from science to clinical proof faster」／「加速生技新創從科學走向臨床驗證」，字級樣式與 Clinical-Value Bridge 的 subtitle 完全一致：`text-xl font-medium text-brand-neutral-700 sm:text-2xl`）
+- **ValueProps 區塊**（`components/sections/ValueProps.tsx`）：2026-09-08 一度移除「Why NovaRadar」標題、原副標題升級為唯一 `h2` 主標題；同日稍晚客戶指示比照 The Clinical-Value Bridge 的「主標題＋次要說明文字」兩階版面，改回 `h2`（`ValueProps.title`＝「An Operator-led Approach」／「營運者思維著手」）＋ `p`（`ValueProps.subtitle`＝「Moving biotech from science to clinical proof faster」／「加速生技新創從科學走向臨床驗證」，字級樣式與 Clinical-Value Bridge 的 subtitle 完全一致：`text-xl font-medium text-brand-neutral-700 sm:text-2xl`）
   - 2026-09-08 客戶提供更新版簡報「MitoBitTech management team website_20260908.pptx」（與 2026-09-07 版檔名相同僅日期後綴不同，內容為改版）後，依簡報第 2 頁全面更新：主標題（`messages/*.json` 的 `ValueProps.subtitle`）由「The operator-led approach that accelerates biotech success」改為「An operator-led approach that moves biotech from science to clinical proof faster」（繁中同步翻譯更新）；下方 6 個項目的 `description_en`／`description_zhTW`（`data/value-props.json`）全面改寫（標題不變，僅將簡報條列式片語潤飾為完整句子，第 5 項標題的 "&" 沿用既有風格未改回簡報的 "and"）。Team 頁卡片 hover 引導文字（`TeamPage.clickForBio`）同時從「Click to read full bio」／「點擊查看完整介紹」簡化為「To Read More」／「閱讀更多」
 - **ClinicalValueBridge 區塊**（`components/sections/ClinicalValueBridge.tsx`）：副標題「Investing in undercapitalized science and driving it to inflection.」放大（`text-lg` → `text-xl sm:text-2xl`，並加粗為 `font-medium`）
 - **WeInvestIn／StrategicFocusAreas 合併**：原本各自獨立的「We Invest In」與「Strategic Focus Areas」兩個 `<section>` 合併為一（`components/sections/WeInvestIn.tsx`），移除「Strategic Focus Areas」標題（`StrategicFocus.title`，翻譯保留未刪除但不再顯示），四個項目（Early Cancer Detection／Novel Target Drug／Rare Genetic Diseases／Neurological Disorders）改在 We Invest In 三張卡片下方**同一區塊**延續呈現（同背景色 `bg-section-blue-50`、無分段 break）。同時移除原本描述文字的紅色粗體首字效果（`first-letter:text-red-600` 等 class 已拿掉），文字樣式與其餘內文一致。原始版本的獨立元件 `components/sections/StrategicFocusAreas.tsx` **保留未刪除但已不再被 `app/[locale]/page.tsx` 引用**（孤兒元件）
