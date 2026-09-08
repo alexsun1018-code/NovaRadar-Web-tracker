@@ -40,8 +40,7 @@ export default async function LeadershipTeamPage() {
       <PageHeaderBanner title={t("leadershipTeam")} image="/images/banner-about.jpg" />
       <main className="flex-1">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-          <h2 className="flex items-center gap-3 text-2xl font-bold text-brand-primary">
-            <span aria-hidden className="h-6 w-1 rounded-sm bg-brand-primary" />
+          <h2 className="text-2xl font-bold text-brand-primary">
             {t("leadershipTeam")}
           </h2>
           <StaticPageBody page={page} contained={false} />
