@@ -31,7 +31,7 @@ export default async function ValueProps({
           {items.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl border border-brand-neutral-100 bg-white p-8 text-center"
+              className="rounded-2xl border border-brand-neutral-100 bg-white p-8"
             >
               <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">
                 <Icon name={item.icon as IconName} className="h-8 w-8" />

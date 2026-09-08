@@ -1,1 +1,1 @@
-NovaRadar's core management team combines backgrounds in biomedical research (PhD-level) and international financial analysis, ensuring that every opportunity is evaluated with the most objective scientific data and the most rigorous risk-control judgment.
+NovaRadar's core team pairs PhD-level biomedical research with operational and investment expertise, so every opportunity is assessed on rigorous science and disciplined risk control.

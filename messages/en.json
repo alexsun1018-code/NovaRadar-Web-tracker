@@ -67,7 +67,7 @@
     "advisors": "Advisors (Taiwan, USA, EU)",
     "backToTeam": "Back to Team",
     "close": "Close",
-    "clickForBio": "Click to read full bio"
+    "clickForBio": "To Read More"
   },
   "Hero": {
     "pause": "Pause carousel",
@@ -78,7 +78,7 @@
   },
   "ValueProps": {
     "title": "Why NovaRadar",
-    "subtitle": "The operator-led approach that accelerates biotech success"
+    "subtitle": "An operator-led approach that moves biotech from science to clinical proof faster"
   },
   "Portfolio": {
     "title": "Portfolio",

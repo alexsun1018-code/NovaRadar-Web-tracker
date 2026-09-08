@@ -44,7 +44,7 @@ export default async function WeInvestIn() {
           {items.map((item) => (
             <div
               key={item.key}
-              className="rounded-2xl border border-brand-neutral-100 bg-background p-8 text-center"
+              className="rounded-2xl border border-brand-neutral-100 bg-background p-8"
             >
               <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand-primary/10 text-brand-primary">
                 <Icon name={item.icon} className="h-8 w-8" />

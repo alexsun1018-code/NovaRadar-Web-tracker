@@ -17,7 +17,8 @@ export type IconName =
   | "lightbulb"
   | "barChart"
   | "search"
-  | "bridge";
+  | "bridge"
+  | "linkedin";
 
 const paths: Record<IconName, React.ReactNode> = {
   globe: (
@@ -116,6 +117,15 @@ const paths: Record<IconName, React.ReactNode> = {
       <path d="M3 17c3-4 15-4 18 0" />
       <path d="M6 17V9M18 17V9M12 17V6" />
       <path d="M2 21h20" />
+    </>
+  ),
+  linkedin: (
+    <>
+      <rect x="3" y="3" width="18" height="18" rx="4" />
+      <circle cx="8" cy="8.2" r="0.6" fill="currentColor" />
+      <path d="M8 11v6" />
+      <path d="M12 17v-4a2.2 2.2 0 0 1 4.4 0V17" />
+      <path d="M12 11v6" />
     </>
   ),
 };

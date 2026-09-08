@@ -26,7 +26,7 @@ export default async function ClinicalValueBridge() {
 
         <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {steps.map((step, i) => (
-            <div key={step.key} className="relative text-center">
+            <div key={step.key} className="relative">
               {i < steps.length - 1 && (
                 <span
                   aria-hidden

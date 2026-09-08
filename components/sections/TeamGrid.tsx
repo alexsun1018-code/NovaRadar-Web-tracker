@@ -11,8 +11,10 @@ export interface TeamMemberView {
   name: string;
   title: string;
   bio: string;
+  shortBio?: string;
   photo: string;
   department?: string;
+  linkedinUrl?: string;
   isFallback: boolean;
 }
 
@@ -27,48 +29,68 @@ function MemberCard({
   onOpen: (member: TeamMemberView) => void;
 }) {
   const t = useTranslations("TeamPage");
-  const excerpt = member.bio.split("\n\n").filter(Boolean)[0] ?? "";
 
   return (
-    <button
-      type="button"
-      onClick={() => onOpen(member)}
-      className="group block w-full text-center"
-    >
-      <span className="relative mx-auto block aspect-[4/5] w-full max-w-[200px] overflow-hidden rounded-2xl bg-brand-neutral-50">
-        {member.photo ? (
-          <Image
-            src={member.photo}
-            alt={member.name}
-            width={400}
-            height={500}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-          />
-        ) : (
-          <span className="flex h-full w-full items-center justify-center text-3xl font-semibold text-brand-primary/40">
-            {member.name ? member.name.charAt(0) : "?"}
-          </span>
-        )}
-
-        {/* 滑鼠移入時動態帶出履歷文字預覽（觸控裝置無 hover，直接點擊開啟彈窗即可） */}
-        {excerpt && (
-          <span className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-brand-primary/95 via-brand-primary/75 to-brand-primary/10 p-4 text-left opacity-0 transition duration-300 group-hover:opacity-100">
-            <span className="line-clamp-5 text-sm text-white/95">
-              {excerpt}
+    <div className="text-center">
+      <button
+        type="button"
+        onClick={() => onOpen(member)}
+        className="group block w-full"
+      >
+        <span className="relative mx-auto block aspect-[4/5] w-full max-w-[240px] overflow-hidden rounded-2xl bg-brand-neutral-50">
+          {member.photo ? (
+            <Image
+              src={member.photo}
+              alt={member.name}
+              width={400}
+              height={500}
+              className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+          ) : (
+            <span className="flex h-full w-full items-center justify-center text-3xl font-semibold text-brand-primary/40">
+              {member.name ? member.name.charAt(0) : "?"}
             </span>
-            <span className="mt-2 text-xs font-bold text-white/80">
+          )}
+
+          {/* 滑鼠移入時僅顯示引導文字（不再帶出履歷摘要），點擊開啟完整履歷彈窗 */}
+          <span className="absolute inset-0 flex items-center justify-center bg-brand-primary/70 opacity-0 transition duration-300 group-hover:opacity-100">
+            <span className="text-sm font-bold text-white">
               {t("clickForBio")} →
             </span>
           </span>
-        )}
-      </span>
-      <h3 className="mt-4 font-bold text-brand-neutral-900 group-hover:text-brand-primary">
-        {member.name || "—"}
-      </h3>
-      <p className="mt-1 text-sm text-brand-neutral-600">
-        {member.title || "—"}
-      </p>
-    </button>
+        </span>
+        <h3 className="mt-4 font-bold text-brand-neutral-900 group-hover:text-brand-primary">
+          {member.name || "—"}
+        </h3>
+        <p className="mt-1 text-sm text-brand-neutral-600">
+          {member.title || "—"}
+        </p>
+      </button>
+
+      {/* 個人照下方的簡短敘述＋LinkedIn 連結（獨立於開啟履歷彈窗的按鈕之外，避免點擊事件互相干擾） */}
+      {member.shortBio && (
+        // 兩端對齊＋自動連字號斷行，避免窄欄位英文長字被硬擠到下一行造成鋸齒狀邊緣；
+        // lang="en" 為目前 short_bio_zhTW 也是英文佔位文字時的權宜設定，待補上正式中文翻譯後應移除
+        <p
+          className="mx-auto mt-2 max-w-[240px] text-justify text-xs leading-relaxed text-brand-neutral-600"
+          style={{ hyphens: "auto" }}
+          lang="en"
+        >
+          {member.shortBio}
+        </p>
+      )}
+      {member.linkedinUrl && (
+        <a
+          href={member.linkedinUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${member.name} LinkedIn`}
+          className="mt-2 inline-flex h-8 w-8 items-center justify-center rounded-full text-brand-neutral-600 hover:bg-brand-neutral-50 hover:text-brand-primary"
+        >
+          <Icon name="linkedin" className="h-5 w-5" />
+        </a>
+      )}
+    </div>
   );
 }
 
@@ -143,6 +165,18 @@ function MemberModal({
                 <p key={i}>{p}</p>
               ))}
             </div>
+
+            {member.linkedinUrl && (
+              <a
+                href={member.linkedinUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:underline"
+              >
+                <Icon name="linkedin" className="h-5 w-5" />
+                LinkedIn
+              </a>
+            )}
           </div>
         </div>
       </div>

@@ -78,6 +78,18 @@ export default async function TeamMemberPage({
                   <p key={i}>{p}</p>
                 ))}
               </div>
+
+              {member.linkedin_url && (
+                <a
+                  href={member.linkedin_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand-primary hover:underline"
+                >
+                  <Icon name="linkedin" className="h-5 w-5" />
+                  LinkedIn
+                </a>
+              )}
             </div>
           </div>
         </div>

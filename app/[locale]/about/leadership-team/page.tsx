@@ -22,14 +22,17 @@ export default async function LeadershipTeamPage() {
     const name = localizedField(member, locale, "name");
     const title = localizedField(member, locale, "title");
     const bio = localizedField(member, locale, "bio");
+    const shortBio = localizedField(member, locale, "short_bio");
     return {
       id: member.id,
       slug: member.slug,
       name: name.value,
       title: title.value,
       bio: bio.value,
+      shortBio: shortBio.value,
       photo: member.photo,
       department: member.department,
+      linkedinUrl: member.linkedin_url,
       isFallback: name.isFallback || title.isFallback,
     };
   });

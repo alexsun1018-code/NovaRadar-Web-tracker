@@ -67,7 +67,7 @@
     "advisors": "顧問（台灣、美國、歐洲）",
     "backToTeam": "返回團隊列表",
     "close": "關閉",
-    "clickForBio": "點擊查看完整介紹"
+    "clickForBio": "閱讀更多"
   },
   "Hero": {
     "pause": "暫停輪播",
@@ -78,7 +78,7 @@
   },
   "ValueProps": {
     "title": "為什麼選擇瑞大",
-    "subtitle": "以營運者思維，加速生技新創成功"
+    "subtitle": "以營運者思維，加速生技新創從科學走向臨床驗證"
   },
   "Portfolio": {
     "title": "投資組合",

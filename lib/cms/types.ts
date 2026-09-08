@@ -65,6 +65,9 @@ export interface TeamMember {
   photo: string;
   bio_zhTW?: string;
   bio_en?: string;
+  /** 卡片用簡短敘述（來源：簡報第 17 頁「Team」總覽投影片），與 bio_* 完整履歷分開存放 */
+  short_bio_zhTW?: string;
+  short_bio_en?: string;
   department?: "董事會" | "經營團隊" | "投資顧問";
   linkedin_url?: string;
   order: number;
