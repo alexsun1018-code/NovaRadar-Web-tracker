@@ -20,11 +20,11 @@ export default async function ValueProps({
   return (
     <section className="flex min-h-screen flex-col justify-center bg-section-blue-50 py-20">
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold text-brand-primary sm:text-4xl">
-            {t("title")}
+        <div className="mx-auto max-w-3xl text-center">
+          {/* 2026-09-08 依客戶指示移除「Why NovaRadar」標題，原副標升級為主標題；Nav.ValueProps.title 保留未刪除但不再顯示 */}
+          <h2 className="text-3xl font-bold text-brand-primary sm:text-4xl lg:text-5xl">
+            {t("subtitle")}
           </h2>
-          <p className="mt-3 text-lg text-brand-neutral-600">{t("subtitle")}</p>
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

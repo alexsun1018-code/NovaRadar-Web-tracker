@@ -9,7 +9,6 @@ import HeroCarousel from "@/components/sections/HeroCarousel";
 import ValueProps from "@/components/sections/ValueProps";
 import ClinicalValueBridge from "@/components/sections/ClinicalValueBridge";
 import WeInvestIn from "@/components/sections/WeInvestIn";
-import StrategicFocusAreas from "@/components/sections/StrategicFocusAreas";
 
 export default async function HomePage() {
   const locale = (await getLocale()) as Locale;
@@ -20,17 +19,12 @@ export default async function HomePage() {
   ]);
 
   const heroSlideViews = heroSlides.map((slide) => {
-    const title = localizedField(slide, locale, "title");
     const subtitle = localizedField(slide, locale, "subtitle");
-    const ctaLabel = localizedField(slide, locale, "ctaLabel");
     return {
       id: slide.id,
-      title: title.value,
       subtitle: subtitle.value,
-      ctaLabel: ctaLabel.value,
-      ctaHref: slide.ctaHref,
       background: slide.background,
-      isFallback: title.isFallback || subtitle.isFallback,
+      isFallback: subtitle.isFallback,
     };
   });
 
@@ -54,7 +48,6 @@ export default async function HomePage() {
         <ValueProps items={valuePropViews} />
         <ClinicalValueBridge />
         <WeInvestIn />
-        <StrategicFocusAreas />
       </main>
       <Footer />
     </>

@@ -21,11 +21,13 @@ export default async function LeadershipTeamPage() {
   const memberViews = members.map((member) => {
     const name = localizedField(member, locale, "name");
     const title = localizedField(member, locale, "title");
+    const bio = localizedField(member, locale, "bio");
     return {
       id: member.id,
       slug: member.slug,
       name: name.value,
       title: title.value,
+      bio: bio.value,
       photo: member.photo,
       department: member.department,
       isFallback: name.isFallback || title.isFallback,

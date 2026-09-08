@@ -65,7 +65,9 @@
   },
   "TeamPage": {
     "advisors": "Advisors (Taiwan, USA, EU)",
-    "backToTeam": "Back to Team"
+    "backToTeam": "Back to Team",
+    "close": "Close",
+    "clickForBio": "Click to read full bio"
   },
   "Hero": {
     "pause": "Pause carousel",

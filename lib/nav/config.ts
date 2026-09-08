@@ -21,7 +21,6 @@ export const mainNav: NavItem[] = [
       { key: "investmentStrategy", href: "/about/investment-strategy", status: "active" },
     ],
   },
-  { key: "portfolio", href: "/portfolio", status: "active" },
   { key: "team", href: "/about/leadership-team", status: "active" },
   {
     key: "news",
@@ -35,10 +34,10 @@ export const mainNav: NavItem[] = [
   { key: "contact", href: "/contact", status: "active" },
 ];
 
-// 保留給外部（投資人）／內部人員登入其他功能使用，後台尚未建置，暫連到 Coming soon 頁
+// 保留給外部（投資人）／內部人員登入功能使用，後台尚未建置，暫連到 Coming soon 頁
+// 2026-09-08 依客戶指示移除 Sign Up 項；/signup 路由本身保留未刪除（孤兒頁面，未出現在導覽）
 export const authNav: NavItem[] = [
   { key: "login", href: "/login", status: "placeholder" },
-  { key: "signup", href: "/signup", status: "placeholder" },
 ];
 
 export const legalNav: NavItem[] = [

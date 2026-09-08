@@ -6,6 +6,6 @@ NovaRadar Bio Venture is an operator-first venture capital firm built by drug de
 
 To become the most trusted sustainable venture capital platform across the Asia-Pacific region and beyond, bridging frontier science with commercial value.
 
-## Our Mission
+## Mission
 
 Investing in novel technologies to advance healthcare and quality of life.

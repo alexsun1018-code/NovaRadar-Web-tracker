@@ -65,7 +65,9 @@
   },
   "TeamPage": {
     "advisors": "顧問（台灣、美國、歐洲）",
-    "backToTeam": "返回團隊列表"
+    "backToTeam": "返回團隊列表",
+    "close": "關閉",
+    "clickForBio": "點擊查看完整介紹"
   },
   "Hero": {
     "pause": "暫停輪播",

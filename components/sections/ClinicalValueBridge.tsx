@@ -19,7 +19,7 @@ export default async function ClinicalValueBridge() {
           <h2 className="text-3xl font-bold text-brand-primary sm:text-4xl">
             {t("title")}
           </h2>
-          <p className="mt-3 text-lg text-brand-neutral-600">
+          <p className="mt-4 text-xl font-medium text-brand-neutral-700 sm:text-2xl">
             {t("subtitle")}
           </p>
         </div>

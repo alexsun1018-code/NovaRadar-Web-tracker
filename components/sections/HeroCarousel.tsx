@@ -2,17 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 import Icon from "@/components/ui/Icon";
 
 const AUTOPLAY_MS = 6000;
 
 export interface HeroSlideView {
   id: string;
-  title: string;
   subtitle: string;
-  ctaLabel: string;
-  ctaHref: string;
   background: { from: string; to: string };
   isFallback: boolean;
 }
@@ -22,6 +18,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideView[] }) {
   const tCommon = useTranslations("Common");
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goTo = useCallback(
@@ -39,6 +36,20 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideView[] }) {
     };
   }, [paused, slides.length]);
 
+  useEffect(() => {
+    // 影片背景僅在桌面尺寸、且使用者未設定「減少動態效果」時播放，手機/平板與偏好靜態畫面者顯示靜態圖片，節省流量
+    const desktopQuery = window.matchMedia("(min-width: 768px)");
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setShowVideo(desktopQuery.matches && !motionQuery.matches);
+    update();
+    desktopQuery.addEventListener("change", update);
+    motionQuery.addEventListener("change", update);
+    return () => {
+      desktopQuery.removeEventListener("change", update);
+      motionQuery.removeEventListener("change", update);
+    };
+  }, []);
+
   if (slides.length === 0) return null;
   const slide = slides[index];
 
@@ -50,7 +61,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideView[] }) {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      {/* 背景圖片（客戶提供的分子意象圖，data/hero-slides.json 同批 2026-09-07 素材）*/}
+      {/* 背景靜態圖，見 CLAUDE.md 素材說明；桌面且未偏好減少動態效果時會被下方影片覆蓋 */}
       <div
         className="absolute inset-0"
         style={{
@@ -59,38 +70,48 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideView[] }) {
           backgroundPosition: "center",
         }}
       />
+      {/* 背景短動畫（生技 DNA 螺旋意象，見 CLAUDE.md 素材說明），僅桌面顯示 */}
+      {showVideo && (
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/videos/hero-bg-dna.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      )}
       {/* 品牌色漸層疊加，維持背景圖可見度同時讓每張 slide 的色調差異清楚可辨 */}
       <div
         className="absolute inset-0 transition-opacity duration-500"
         style={{
           background: `linear-gradient(135deg, var(--${slide.background.from}), var(--${slide.background.to}))`,
-          opacity: 0.45,
+          opacity: 0.22,
         }}
       />
-      {/* 文字置中，統一加深整體背景以確保與圖片重疊處仍可辨識 */}
-      <div className="absolute inset-0 bg-black/45" />
+      {/* 文字區塊偏右下、多行右側對齊（參考 vivocapital.com 版面），僅在文字後方加深背景，左側維持動畫清晰可見 */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(260deg, rgba(6,26,38,0.72) 0%, rgba(6,26,38,0.4) 42%, rgba(6,26,38,0.08) 68%, rgba(6,26,38,0) 85%)",
+        }}
+      />
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
+      <div className="relative mx-auto flex min-h-[72vh] max-w-7xl flex-col items-end justify-end px-4 pb-16 pt-32 text-right sm:px-6 lg:px-8">
+        <div className="max-w-full">
           {slide.isFallback && (
             <p className="mb-3 inline-block rounded-full bg-white/15 px-3 py-1 text-xs">
               {tCommon("notTranslated")}
             </p>
           )}
-          <h1
-            className="text-3xl font-bold leading-tight [text-shadow:0_2px_12px_rgba(0,0,0,0.45)] sm:text-4xl lg:text-5xl"
-          >
-            {slide.title}
+          <h1 className="text-[clamp(1.75rem,4.2vw,5.25rem)] font-bold leading-tight [text-shadow:0_2px_16px_rgba(0,0,0,0.6)]">
+            {slide.subtitle.split("\n").map((line, i) => (
+              <span key={i} className="block sm:whitespace-nowrap">
+                {line}
+              </span>
+            ))}
           </h1>
-          <p className="mt-4 text-lg text-white/90 [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
-            {slide.subtitle}
-          </p>
-          <Link
-            href={slide.ctaHref}
-            className="mt-8 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-primary transition hover:bg-brand-neutral-50"
-          >
-            {slide.ctaLabel}
-          </Link>
         </div>
       </div>
 
