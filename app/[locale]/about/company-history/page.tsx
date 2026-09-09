@@ -1,5 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
-import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import { getCompanyHistory } from "@/lib/cms/companyHistory";
 import { localizedField } from "@/lib/i18n/localizedField";
 import Header from "@/components/layout/Header";
@@ -8,7 +7,6 @@ import PageHeaderBanner from "@/components/layout/PageHeaderBanner";
 import CompanyHistoryTimeline from "@/components/sections/CompanyHistoryTimeline";
 
 export default async function CompanyHistoryPage() {
-  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("Nav");
 
   const historyYears = await getCompanyHistory();
@@ -17,8 +15,8 @@ export default async function CompanyHistoryPage() {
     year: entry.year,
     milestones: entry.milestones.map((milestone) => ({
       date: milestone.date,
-      title: localizedField(milestone, locale, "title").value,
-      description: localizedField(milestone, locale, "description").value,
+      title: localizedField(milestone, "title").value,
+      description: localizedField(milestone, "description").value,
     })),
   }));
 

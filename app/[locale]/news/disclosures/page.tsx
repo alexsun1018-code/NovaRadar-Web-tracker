@@ -1,5 +1,4 @@
-import { getLocale, getTranslations } from "next-intl/server";
-import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import { getDisclosureList } from "@/lib/cms/disclosures";
 import { localizedField } from "@/lib/i18n/localizedField";
 import Header from "@/components/layout/Header";
@@ -9,13 +8,12 @@ import PageHeaderBanner from "@/components/layout/PageHeaderBanner";
 import DisclosureList from "@/components/sections/DisclosureList";
 
 export default async function NewsDisclosuresPage() {
-  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("Nav");
 
   const disclosures = await getDisclosureList();
 
   const items = disclosures.map((disclosure) => {
-    const title = localizedField(disclosure, locale, "title");
+    const title = localizedField(disclosure, "title");
     return {
       slug: disclosure.slug,
       title: title.value,

@@ -1,14 +1,12 @@
-import { getLocale, getTranslations } from "next-intl/server";
-import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import { getStaticPage } from "@/lib/cms/pages";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import StaticPageBody from "@/components/sections/StaticPageBody";
 
 export default async function DisclaimerPage() {
-  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("Nav");
-  const page = await getStaticPage("legal-disclaimer", locale);
+  const page = await getStaticPage("legal-disclaimer");
 
   return (
     <>

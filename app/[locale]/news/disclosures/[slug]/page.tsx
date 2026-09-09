@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import { getLocale } from "next-intl/server";
-import type { Locale } from "@/i18n/routing";
 import { getDisclosureBySlug, getDisclosureList } from "@/lib/cms/disclosures";
 import { localizedField } from "@/lib/i18n/localizedField";
 import Header from "@/components/layout/Header";
@@ -18,15 +16,14 @@ export default async function DisclosureDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const locale = (await getLocale()) as Locale;
   const disclosure = await getDisclosureBySlug(slug);
 
   if (!disclosure) {
     notFound();
   }
 
-  const title = localizedField(disclosure, locale, "title");
-  const content = localizedField(disclosure, locale, "content");
+  const title = localizedField(disclosure, "title");
+  const content = localizedField(disclosure, "content");
 
   return (
     <>

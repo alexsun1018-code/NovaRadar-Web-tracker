@@ -25,13 +25,11 @@ export async function sendLead(payload: ContactFormPayload): Promise<void> {
     body: JSON.stringify({
       from: "NovaRadar Web <onboarding@resend.dev>",
       to: [CONTACT_INBOX],
-      subject: `[商機提案] ${payload.name} — ${payload.inquiryType}`,
+      subject: `[聯絡表單] ${payload.name}`,
       text: [
         `姓名：${payload.name}`,
-        `公司：${payload.company || "—"}`,
         `Email：${payload.email}`,
         `電話：${payload.phone || "—"}`,
-        `類別：${payload.inquiryType}`,
         `訊息：${payload.message || "—"}`,
       ].join("\n"),
     }),

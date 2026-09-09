@@ -27,10 +27,10 @@ content is local JSON/Markdown under `data/`, read through a typed fetcher layer
 the planned target; schema mirrors `content-model.md`) only requires rewriting `lib/cms/*.ts`, not callers.
 
 **Routing**: every page lives under `app/[locale]/...`; `proxy.ts` (the middleware) wraps `next-intl`'s
-`createMiddleware(routing)` to resolve/redirect the locale prefix. `i18n/routing.ts` defines `locales` (`zh-tw`,
-`en`), `defaultLocale` (`en`), and `localePrefix: "always"`. `i18n/navigation.ts` re-exports locale-aware
-`Link`/`useRouter`/`usePathname` — use these instead of `next/link` inside `[locale]` routes so the locale prefix
-is preserved automatically.
+`createMiddleware(routing)` to resolve/redirect the locale prefix. `i18n/routing.ts` defines `locales` (`en` only
+since 2026-09-09 — zh-tw was removed, see Change Log), `defaultLocale` (`en`), and `localePrefix: "always"` (so
+every route is still `/en/...`). `i18n/navigation.ts` re-exports locale-aware `Link`/`useRouter`/`usePathname` —
+use these instead of `next/link` inside `[locale]` routes so the locale prefix is preserved automatically.
 
 **Content layer** (`lib/cms/*.ts`): one file per content type (`hero.ts`, `team.ts`, `pages.ts`, `news.ts`,
 `disclosures.ts`, `companyHistory.ts`, `contactInfo.ts`, `valueProps.ts`, `portfolio.ts`), each exporting
@@ -38,25 +38,25 @@ is preserved automatically.
 `lib/cms/types.ts`. Pages call these getters, map the result through `localizedField()`, and pass plain view
 objects into client components.
 
-**Two separate bilingual patterns — don't mix them up**:
+**Two separate bilingual patterns — don't mix them up** (site only *renders* EN since 2026-09-09, but the
+underlying data still carries the original zh-tw fields as source material and EN's fallback):
 - *Structured content records* (`data/*.json`, e.g. team members, value props, hero slides) store paired fields
-  `{name}_zhTW` / `{name}_en`. `lib/i18n/localizedField.ts` resolves them: zh-tw is always authoritative; en falls
-  back to the zh-tw value and sets `isFallback: true` when the `_en` field is missing/empty (callers typically
-  render a "not yet translated" badge in that case).
+  `{name}_zhTW` / `{name}_en`. `lib/i18n/localizedField.ts` resolves them: it always returns `_en`, falling back to
+  the `_zhTW` value and setting `isFallback: true` when `_en` is missing/empty (callers typically render a "not
+  yet translated" badge in that case). The function no longer takes a `locale` argument — call it as
+  `localizedField(entry, fieldBase)`.
 - *Full static pages* (`data/pages/{slug}.md`, e.g. company-intro, contact) are plain Markdown with frontmatter,
-  parsed via `gray-matter` + `marked` in `lib/cms/pages.ts`. `{slug}.md` is the zh-tw source of truth; an optional
-  `{slug}.en.md` is a hand-translated override. `getStaticPage()` reads `{slug}.en.md` when it exists, else falls
-  back to the zh-tw file with `isFallback: true`.
+  parsed via `gray-matter` + `marked` in `lib/cms/pages.ts`. `{slug}.md` is the original zh-tw source; an optional
+  `{slug}.en.md` is a hand-translated override. `getStaticPage(slug)` reads `{slug}.en.md` when it exists, else
+  falls back to the zh-tw file with `isFallback: true`.
 - *UI chrome / marketing copy* (nav labels, section headings, button text, short card labels/descriptions) lives
-  in `messages/{locale}.json`, consumed via `next-intl`'s `useTranslations`/`getTranslations` — this is separate
-  from both content patterns above and has no fallback mechanism, so every key must exist in both `en.json` and
-  `zh-tw.json`.
+  in `messages/en.json` (the only locale file — `messages/zh-tw.json` was deleted 2026-09-09), consumed via
+  `next-intl`'s `useTranslations`/`getTranslations`.
 
-**Nav config vs. locale list**: `lib/nav/config.ts` defines `mainNav`/`authNav`/`legalNav` independent of which
-routes actually exist — a nav entry can be removed without deleting the page (see "orphaned code" below), and
-`status: "placeholder"` pages render a `ComingSoonPage`. `Header.tsx`'s language-switcher display order
-(`localeMenuOrder`) is intentionally a separate constant from `i18n/routing.ts`'s `routing.locales` (which drives
-routing/`generateStaticParams` order) — changing display order should not touch the routing array.
+**Nav config**: `lib/nav/config.ts` defines `mainNav`/`authNav`/`legalNav` independent of which routes actually
+exist — a nav entry can be removed without deleting the page (see "orphaned code" below), and
+`status: "placeholder"` pages render a `ComingSoonPage`. `Header.tsx` no longer has a language switcher (removed
+2026-09-09 along with zh-tw).
 
 **Orphaned code convention**: when a feature/section is removed from the live site per client instruction, the
 component/route/data file is generally left in place (not deleted) unless told otherwise, and the removal +
@@ -76,12 +76,12 @@ of them (see the icon-review entry in the Change Log for the reasoning already a
 
 ## Content & Translation Conventions
 
-- zh-tw is the sole authoritative language and should read as human-written; en is a translation that may lag
-  behind. For long-form content (bios, static pages) still awaiting a client-provided translation, the
-  convention is to place the zh-tw text (or leave the field empty, triggering the fallback above) rather than
-  inventing wording — but short marketing copy (section titles, card labels/descriptions) has been translated
-  directly in past sessions when the client supplied only English source material. See the Change Log for which
-  fields are still pending official translation.
+- The site renders EN only (2026-09-09 onward). `_zhTW` fields in `data/*.json` and `data/pages/*.md` are kept as
+  the original source material / EN fallback, not for display. For long-form content (bios, static pages) still
+  awaiting a client-provided EN translation, the convention is to place the zh-tw text (or leave the field empty,
+  triggering the fallback above) rather than inventing wording — but short marketing copy (section titles, card
+  labels/descriptions) has been translated directly in past sessions when the client supplied only English source
+  material. See the Change Log for which fields are still pending official translation.
 - Image/video assets must be commercially licensed (Unsplash License, Pexels License, or client-supplied
   originals) — never use a paid stock site's preview/watermarked image, even if the client forwards it labeled
   "high-res"; check embedded XMP/EXIF metadata for a stock-agency credit before use. See the Change Log for a
@@ -98,6 +98,18 @@ The sections below are a running, dated record of product/content decisions made
 kept because the reasoning (why an approach was rejected, what a client said, what a source file actually
 contained) is not recoverable by re-reading the current code. Skim the relevant section before re-touching an
 area to avoid re-litigating a decision that was already tried and rejected.
+
+## 2026-09-09 移除繁中／語言切換、Contact 表單改版、News 頁改為活動動態＋彈窗
+
+依客戶指示三項變更：
+
+- **移除繁中頁面與地球語言切換 UI，網站僅保留 EN**：詳見上方「雙語策略」章節的 2026-09-09 更新說明。`npx tsc --noEmit`／`npm run lint`／`npm run build` 均通過，`next build` 輸出確認僅產生 `/en/*` 靜態頁（無 `/zh-tw/*`）
+- **Contact 頁改版，格式參考 glintmed.com/en/contact-us**：頁面結構改為「說明文字 → 簡易表單（Name／Tel／Email／Remark）→ 純文字聯絡資訊（Phone／Email／Address，Address 連到 Google Maps 搜尋）」。原本頁面移除多年未掛上的 `ProposalForm.tsx`（含 Company／Inquiry Type 欄位，較複雜）已刪除，改為新元件 `components/sections/ContactForm.tsx`（僅 Name／Tel／Email／Remark 四欄，沿用同一 `/api/contact` 端點）；`lib/forms/schema.ts`（`contactFormSchema` 移除 `company`／`inquiryType`）、`lib/forms/leadSink.ts`、`lib/analytics/track.ts`（`trackLead()` 移除 `inquiryType` 參數）同步簡化。`ContactInfoBlock.tsx` 從卡片格線改為純文字直式列表，移除「Contact Person」欄位（客戶資料本就是空值，且 glintmed 參考頁沒有此欄位）。此變更同時解決了 `待辦` 中「ProposalForm／`/api/contact` 提案表單是否重新掛上或棄用」的懸案——採重新掛上（改款後）
+- **News 頁移除示範用舊內容，改為活動動態列表＋彈窗**：`data/news.json` 原本 3 篇 `_placeholder: true` 示範新聞已整批替換為 3 篇真實活動報導，來源為客戶簡報 `MitoBitTech management team website_20260909.pptx` 第 17–19 頁（貼文皆為截圖非可選取文字，用 `unzip` 展開 pptx 讀取 `ppt/media/imageNN.jpeg|png` 圖片後用視覺辨識轉譯文字內容，非 `<a:t>` 文字擷取）：
+  1. NovaRadar 葉秉陽博士出席 Mycenax 主辦「2026 Emerging Biologics Summit Asia」（2026-07-14，The Place Taipei）
+  2. 葉秉陽博士於美國聖地牙哥 TCA Forum 演講「Speed to Clinical Proof-of-Concept」（2026-06-21）
+  3. 胡瑞卿共同創辦人受邀於國家衛生研究院（NHRI）演講「When AI Begins to Understand Life」（日期未公開，依 LinkedIn 貼文相對時間「3 個月前」推估約 2026-06-15，已在內文註明為推估值——已用網路搜尋確認 NHRI 30 週年主典禮實際在 2026-01-07，與此次內部演講非同一場次，故未採用主典禮日期）
+  三篇的封面照／補充照片取自簡報對應頁面圖片，存放於新增的 `public/images/news/`。`lib/cms/types.ts` 的 `NewsArticle` 新增選填欄位 `gallery?: string[]`（彈窗內文下方的補充照片，如議程表、大合照）。顯示機制仿照 Team 頁個人履歷彈窗：新元件 `components/sections/NewsFeed.tsx` 取代原本會連到獨立 `/news/general/[slug]` 頁面的 `NewsList.tsx`（已刪除）——條列日期＋簡要人地事物，滑鼠移到縮圖上疊加「To Read More →」提示文字（沿用 Team 頁同款翻譯字串精神，新增至 `messages/en.json` 的 `News.toReadMore`），點擊開啟固定彈窗顯示完整內文＋封面照＋補充照片，右上角「X」關閉。原有的 `app/[locale]/news/general/[slug]/page.tsx` 詳細頁路由**保留未刪除**（比照 Team 頁 `[slug]` 頁面的孤兒程式碼慣例，只是不再從列表頁連結過去），`YearSidebar.tsx` 未受影響（`DisclosureList.tsx`／Announcements 頁仍在使用）
 
 ## 技術路線
 
@@ -179,18 +191,18 @@ area to avoid re-litigating a decision that was already tried and rejected.
 - **Hero 字級改用 fluid clamp 避免中間寬度截斷**：客戶反饋三行文案要「各一列」且字體要再放大。改用 Tailwind 固定斷點（`text-5xl sm:text-6xl lg:text-7xl`）搭配 `sm:whitespace-nowrap` 時，在 `lg` 斷點剛切換的中間寬度（約 1024px 桌機）字級跳到 72px 但容器變窄，导致最長一行「Investing in Novel Technologies」被裁掉一截（實測截圖發現，`document.documentElement.scrollWidth` 因 `overflow-hidden` 未偵測到但視覺上確實被裁切）。改為 `text-[clamp(1.75rem,4.2vw,5.25rem)]`（隨版面寬度連續縮放，而非跳階），並用 Playwright 在 640～1920px 共 9 組寬度量測每行文字的實際 `getBoundingClientRect`，確認任何寬度下都不會超出容器，同時桌機大螢幕（1920px）字級可達約 80px，比原本固定 `lg:text-7xl`（72px）更大
 - **Portfolio 頁整頁移除**：`app/[locale]/portfolio/page.tsx` 路由檔案已刪除（造訪 `/portfolio` 會 404），`lib/nav/config.ts` 的導覽項目已移除。以下相關程式碼／資料**保留未刪除**（屬孤兒程式碼，之後如需恢復可重新掛上）：`components/sections/PortfolioCardWall.tsx`、`components/sections/PortfolioLogoWall.tsx`（本來就已是孤兒元件）、`lib/cms/portfolio.ts`、`data/portfolio-companies.json`、`data/pages/portfolio-intro.md`、`public/images/banner-portfolio.jpg`、`messages/*.json` 的 `Portfolio` namespace 與 `Nav.portfolio` key
 
-## 雙語策略
+## 雙語策略（已於 2026-09-09 終止，改為僅 EN，見下方歷史記錄）
 
-- 語言：繁體中文 / English（2026-09-07 取消簡體中文，原三語策略／OpenCC 自動轉換架構已移除：`lib/i18n/opencc.ts`、`lib/cms/localize.ts`、`messages/zh-cn.json`、`data/pages/*.zh-cn.md` 皆已刪除，`opencc-js` 依賴已移除）
-- 預設語言：English（`i18n/routing.ts` 的 `defaultLocale`）
-- 路由策略：所有語言皆加前綴（`/zh-tw` `/en`），透過 `next-intl` + `proxy.ts`（middleware）實作
-- 語言切換 UI：Header 為單純地球圖示按鈕，點擊後彈出下拉選單供選擇（`components/layout/Header.tsx`），手機版選單直接以列表呈現。選單顯示順序由 `Header.tsx` 內的 `localeMenuOrder`（`["en", "zh-tw"]`，2026-09-08 依客戶指示 EN 在上、繁中在下）決定，與 `i18n/routing.ts` 的 `routing.locales`（`["zh-tw", "en"]`，影響路由/靜態頁生成順序等其他邏輯）刻意分開、互不影響
-- 翻譯來源：
-  - 繁中：人工撰寫（主要語言，唯一權威來源）
-  - 英文：人工翻譯，可能落後於繁中版本
-- 英文內容缺漏時的處理：fallback 顯示繁中內容，並顯示「尚未翻譯」提示文字（實作於 `lib/i18n/localizedField.ts`）
-- `data/pages/*.md` 語系覆寫慣例：`{slug}.md` 為繁中權威來源；`{slug}.en.md` 為選填的人工譯文檔，`lib/cms/pages.ts` 的 `getStaticPage()` 會優先讀取，不存在才 fallback 到繁中原文
-- `category`／`investment_stage` 這類非逐欄位多語系的固定列舉值，翻譯放在 `messages/*.json` 的 `Taxonomy` namespace（以繁中值當 key），而非幫每筆內容資料加 `_en` 欄位
+- **2026-09-09 更新：依客戶指示移除繁中頁面與語言切換 UI，網站僅保留 EN**：`i18n/routing.ts` 的 `locales` 從 `["zh-tw", "en"]` 改為 `["en"]`（`localePrefix` 維持 `"always"`，路由仍為 `/en/...`）；`messages/zh-tw.json` 已刪除；`Header.tsx` 的地球圖示語言切換選單（含 `localeLabels`／`localeMenuOrder`／下拉選單，桌面與手機版皆有）整段移除。`lib/i18n/localizedField.ts` 的 `localizedField()` 簽名同步簡化為 `(entry, fieldBase)`（移除 `locale` 參數，固定取 `_en` 並 fallback `_zhTW`），`lib/cms/pages.ts` 的 `getStaticPage()` 簽名簡化為 `(slug)`（固定讀 `{slug}.en.md`，不存在則 fallback 繁中 `.md`）——所有呼叫端已同步移除 `locale` 引數。`data/*.json`／`data/pages/*.md` 的 `_zhTW`／繁中欄位**保留未刪除**（作為原始資料來源與 `_en` 缺漏時的 fallback，非顯示用途）
+- 以下為 2026-09-09 之前的雙語策略歷史記錄（僅供追溯，目前已不適用於路由/UI）：
+  - 語言：繁體中文 / English（2026-09-07 取消簡體中文，原三語策略／OpenCC 自動轉換架構已移除：`lib/i18n/opencc.ts`、`lib/cms/localize.ts`、`messages/zh-cn.json`、`data/pages/*.zh-cn.md` 皆已刪除，`opencc-js` 依賴已移除）
+  - 預設語言：English（`i18n/routing.ts` 的 `defaultLocale`）
+  - 路由策略：所有語言皆加前綴（`/zh-tw` `/en`），透過 `next-intl` + `proxy.ts`（middleware）實作
+  - 語言切換 UI：Header 為單純地球圖示按鈕，點擊後彈出下拉選單供選擇，手機版選單直接以列表呈現。選單顯示順序由 `localeMenuOrder`（`["en", "zh-tw"]`，2026-09-08 依客戶指示 EN 在上、繁中在下）決定，與 `routing.locales`（`["zh-tw", "en"]`）刻意分開、互不影響
+  - 翻譯來源：繁中人工撰寫（主要語言，唯一權威來源）；英文人工翻譯，可能落後於繁中版本
+  - 英文內容缺漏時的處理：fallback 顯示繁中內容，並顯示「尚未翻譯」提示文字（實作於 `lib/i18n/localizedField.ts`）
+  - `data/pages/*.md` 語系覆寫慣例：`{slug}.md` 為繁中權威來源；`{slug}.en.md` 為選填的人工譯文檔，`getStaticPage()` 會優先讀取，不存在才 fallback 到繁中原文
+  - `category`／`investment_stage` 這類非逐欄位多語系的固定列舉值，翻譯放在 `messages/*.json` 的 `Taxonomy` namespace（以繁中值當 key），而非幫每筆內容資料加 `_en` 欄位
 
 ## 品牌色票
 
@@ -219,11 +231,12 @@ area to avoid re-litigating a decision that was already tried and rejected.
 - [ ] 表單流量變大後評估加上 reCAPTCHA v3（目前僅 honeypot 防護）
 - [ ] `/login`、`/signup` 目前僅為 Coming soon 佔位頁，需確認外部（投資人）／內部人員登入的實際需求（SSO？各自獨立帳號系統？）後才能開發真正功能
 - [x] `hero-bg-slogan.jpg` 解析度偏低問題已處理（2026-09-08 改用 Unsplash 授權圖取代，原客戶提供檔為 Getty 未授權浮水印樣張，見上方說明）
-- [ ] `data/team-members.json` 8 位團隊成員的 `bio_zhTW`／`short_bio_zhTW` 目前是英文全文暫代，需要正式中文翻譯
-- [ ] `data/pages/leadership-team-intro.md`（繁中版 Team 頁介紹文）尚未依英文新版「NovaRadar's core team pairs PhD-level...」同步更新，待客戶提供正式中文版本
+- [ ] （2026-09-09 起網站僅顯示 EN，此項已非顯示阻塞，僅影響原始資料完整性）`data/team-members.json` 8 位團隊成員的 `bio_zhTW`／`short_bio_zhTW` 目前是英文全文暫代，需要正式中文翻譯
+- [ ] （2026-09-09 起網站僅顯示 EN，此項已非顯示阻塞）`data/pages/leadership-team-intro.md`（繁中版 Team 頁介紹文）尚未依英文新版「NovaRadar's core team pairs PhD-level...」同步更新，待客戶提供正式中文版本
 - [ ] 4 位投資顧問（Audrey Tseng／Jane Tsai／Patrik Frei／Michael Su）的 LinkedIn 網址簡報未提供，待客戶補充後填入 `linkedin_url`
-- [ ] `ProposalForm`／`/api/contact` 提案表單已從頁面移除但程式碼保留，需確認是否要在其他頁面重新掛上，或正式棄用整組刪除
+- [x] `ProposalForm`／`/api/contact` 提案表單已從頁面移除但程式碼保留，需確認是否要在其他頁面重新掛上，或正式棄用整組刪除 → 2026-09-09 已重新掛上：Contact 頁改款為 glintmed.com 格式，`ProposalForm.tsx` 刪除並以簡化版 `ContactForm.tsx`（Name／Tel／Email／Remark）取代，見上方 Change Log
+- [ ] News 頁 3 篇活動報導（2026-09-09 新增）：第 3 篇（NHRI 演講）確切日期未公開，內文以 LinkedIn 貼文相對時間推估為 2026-06-15，待客戶確認正確日期後更新 `data/news.json` 的 `publish_date`；另 3 篇皆未附可公開的原始 LinkedIn 貼文網址（`source_url` 留空），如需可點擊來源連結需請客戶提供
 - [ ] Portfolio 頁（2026-09-08 已移除，見上方說明）確認是否為永久決策；若確定不再需要，`PortfolioCardWall`／`PortfolioLogoWall`／`lib/cms/portfolio.ts`／`data/portfolio-companies.json` 等孤兒程式碼可考慮正式刪除；若之後仍要恢復投資組合頁，需重新建立路由並掛回導覽
-- [ ] `public/videos/hero-bg-dna.mp4`（15.8MB）本機無 ffmpeg 無法壓縮，之後有工具可用時應轉檔壓縮（目標建議 3-5MB，可考慮降解析度至 1280×720、調整位元率、或轉 webm 提供 `<source>` 備援）以改善桌面版首頁載入效能
+- [x] `public/videos/hero-bg-dna.mp4` 壓縮已完成（2026-09-09）：透過 winget 安裝 ffmpeg，改用 libx264 CRF 26、解析度降為 1280×720、移除無用音軌，檔案從 15.8MB 降至約 2.4MB，畫質經截圖比對無明顯差異；webm `<source>` 備援尚未做，如需再進一步壓縮可評估
 - [ ] `StrategicFocus.title`（"Strategic Focus Areas"）翻譯 key 因標題移除已無使用處（保留未刪除）；若確定不再需要獨立標題，可評估是否要正式清理
-- [x] `messages/zh-tw.json` 的 `StrategicFocus.areas.*.label`／`WeInvestIn.items.*.label`／`ClinicalBridge.title`／`ClinicalBridge.steps.*.label`／`WeInvestIn.title` 未翻譯問題已修正（2026-09-08）
+- [x] `messages/zh-tw.json` 的 `StrategicFocus.areas.*.label`／`WeInvestIn.items.*.label`／`ClinicalBridge.title`／`ClinicalBridge.steps.*.label`／`WeInvestIn.title` 未翻譯問題已修正（2026-09-08；`messages/zh-tw.json` 本身已於 2026-09-09 隨語言切換移除功能一併刪除，此項僅留歷史記錄）

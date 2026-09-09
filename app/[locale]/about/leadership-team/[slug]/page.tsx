@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getLocale, getTranslations } from "next-intl/server";
-import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getTeamMemberBySlug, getTeamMembers } from "@/lib/cms/team";
 import { localizedField } from "@/lib/i18n/localizedField";
@@ -21,7 +20,6 @@ export default async function TeamMemberPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("TeamPage");
   const member = await getTeamMemberBySlug(slug);
 
@@ -29,9 +27,9 @@ export default async function TeamMemberPage({
     notFound();
   }
 
-  const name = localizedField(member, locale, "name");
-  const title = localizedField(member, locale, "title");
-  const bio = localizedField(member, locale, "bio");
+  const name = localizedField(member, "name");
+  const title = localizedField(member, "title");
+  const bio = localizedField(member, "bio");
   const paragraphs = bio.value.split("\n\n").filter(Boolean);
 
   return (

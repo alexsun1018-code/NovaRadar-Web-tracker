@@ -6,8 +6,8 @@ import { trackLead } from "@/lib/analytics/track";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export default function ProposalForm() {
-  const t = useTranslations("ProposalForm");
+export default function ContactForm() {
+  const t = useTranslations("ContactPage");
   const [status, setStatus] = useState<Status>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -23,7 +23,6 @@ export default function ProposalForm() {
     }
 
     setStatus("submitting");
-    const inquiryType = String(formData.get("inquiryType") ?? "");
 
     try {
       const res = await fetch("/api/contact", {
@@ -31,10 +30,8 @@ export default function ProposalForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.get("name"),
-          company: formData.get("company"),
           email: formData.get("email"),
           phone: formData.get("phone"),
-          inquiryType,
           message: formData.get("message"),
         }),
       });
@@ -43,26 +40,15 @@ export default function ProposalForm() {
 
       setStatus("success");
       form.reset();
-      trackLead(inquiryType);
+      trackLead();
     } catch {
       setStatus("error");
     }
   }
 
   return (
-    <section className="flex min-h-screen flex-col justify-center bg-section-gold-50 py-20">
-      <div className="mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-3xl font-bold text-brand-primary sm:text-4xl">
-            {t("title")}
-          </h2>
-          <p className="mt-3 text-lg text-brand-neutral-600">{t("subtitle")}</p>
-        </div>
-
-      <form
-        onSubmit={handleSubmit}
-        className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2"
-      >
+    <div className="mx-auto max-w-xl px-4 sm:px-6 lg:px-8">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
           type="text"
           name="company_website"
@@ -74,7 +60,7 @@ export default function ProposalForm() {
 
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-medium text-brand-neutral-900">
-            {t("name")} *
+            {t("formName")} *
           </span>
           <input
             name="name"
@@ -85,17 +71,18 @@ export default function ProposalForm() {
 
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-medium text-brand-neutral-900">
-            {t("company")}
+            {t("formTel")}
           </span>
           <input
-            name="company"
+            type="tel"
+            name="phone"
             className="rounded-lg border border-brand-neutral-100 bg-white px-4 py-2.5 outline-brand-primary"
           />
         </label>
 
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-medium text-brand-neutral-900">
-            {t("email")} *
+            {t("formEmail")} *
           </span>
           <input
             type="email"
@@ -107,37 +94,7 @@ export default function ProposalForm() {
 
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-medium text-brand-neutral-900">
-            {t("phone")}
-          </span>
-          <input
-            type="tel"
-            name="phone"
-            className="rounded-lg border border-brand-neutral-100 bg-white px-4 py-2.5 outline-brand-primary"
-          />
-        </label>
-
-        <label className="flex flex-col gap-1.5 text-sm sm:col-span-2">
-          <span className="font-medium text-brand-neutral-900">
-            {t("inquiryType")} *
-          </span>
-          <select
-            name="inquiryType"
-            required
-            defaultValue=""
-            className="rounded-lg border border-brand-neutral-100 bg-white px-4 py-2.5 outline-brand-primary"
-          >
-            <option value="" disabled>
-              —
-            </option>
-            <option value="funding">{t("inquiryTypeFunding")}</option>
-            <option value="partnership">{t("inquiryTypePartnership")}</option>
-            <option value="other">{t("inquiryTypeOther")}</option>
-          </select>
-        </label>
-
-        <label className="flex flex-col gap-1.5 text-sm sm:col-span-2">
-          <span className="font-medium text-brand-neutral-900">
-            {t("message")}
+            {t("formRemark")}
           </span>
           <textarea
             name="message"
@@ -146,28 +103,27 @@ export default function ProposalForm() {
           />
         </label>
 
-        <div className="sm:col-span-2">
+        <div>
           <button
             type="submit"
             disabled={status === "submitting"}
             className="w-full rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-primary-light disabled:opacity-60"
           >
-            {status === "submitting" ? t("submitting") : t("submit")}
+            {status === "submitting" ? t("formSubmitting") : t("formSubmit")}
           </button>
 
           {status === "success" && (
             <p className="mt-3 text-center text-sm text-brand-secondary">
-              {t("successTitle")} — {t("successMessage")}
+              {t("formSuccess")}
             </p>
           )}
           {status === "error" && (
             <p className="mt-3 text-center text-sm text-red-600">
-              {t("errorMessage")}
+              {t("formError")}
             </p>
           )}
         </div>
       </form>
-      </div>
-    </section>
+    </div>
   );
 }

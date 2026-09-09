@@ -4,8 +4,6 @@ export interface ContactInfoView {
   phone: string;
   email: string;
   address: string;
-  contactPersonName: string;
-  contactPersonTitle: string;
 }
 
 export default async function ContactInfoBlock({
@@ -14,30 +12,43 @@ export default async function ContactInfoBlock({
   info: ContactInfoView;
 }) {
   const t = await getTranslations("ContactPage");
+  const rows: { label: string; content: React.ReactNode }[] = [];
 
-  const rows = [
-    { label: t("phone"), value: info.phone },
-    { label: t("email"), value: info.email },
-    { label: t("address"), value: info.address },
-    {
-      label: t("contactPerson"),
-      value: [info.contactPersonName, info.contactPersonTitle]
-        .filter(Boolean)
-        .join(" "),
-    },
-  ];
+  if (info.phone) {
+    rows.push({ label: t("phone"), content: info.phone });
+  }
+  if (info.email) {
+    rows.push({ label: t("email"), content: info.email });
+  }
+  if (info.address) {
+    rows.push({
+      label: t("address"),
+      content: (
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            info.address
+          )}`}
+          target="_blank"
+          rel="noreferrer"
+          className="text-brand-primary hover:underline"
+        >
+          {info.address}
+        </a>
+      ),
+    });
+  }
+
+  if (rows.length === 0) return null;
 
   return (
-    <div className="mx-auto max-w-3xl px-4 pb-4 sm:px-6 lg:px-8">
-      <dl className="grid grid-cols-1 gap-4 rounded-2xl border border-brand-neutral-100 p-6 sm:grid-cols-2">
+    <div className="mx-auto max-w-xl px-4 pb-4 sm:px-6 lg:px-8">
+      <dl className="space-y-3 border-t border-brand-neutral-100 pt-8 text-center text-sm">
         {rows.map((row) => (
           <div key={row.label}>
-            <dt className="text-xs font-medium uppercase tracking-wide text-brand-neutral-300">
-              {row.label}
+            <dt className="inline font-medium text-brand-neutral-600">
+              {row.label}：
             </dt>
-            <dd className="mt-1 text-sm text-brand-neutral-900">
-              {row.value || t("notProvided")}
-            </dd>
+            <dd className="inline text-brand-neutral-900">{row.content}</dd>
           </div>
         ))}
       </dl>

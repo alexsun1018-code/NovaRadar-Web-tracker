@@ -76,7 +76,7 @@ export default function DisclosureList({
           ))}
           {filtered.length === 0 && (
             <li className="py-8 text-center text-sm text-brand-neutral-300">
-              —
+              {tCommon("noAnnouncements")}
             </li>
           )}
         </ul>

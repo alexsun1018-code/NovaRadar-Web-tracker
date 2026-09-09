@@ -2,37 +2,8 @@
   "_meta": {
     "content_type": "material-disclosure",
     "schema_ref": "content-model.md #5 重大訊息",
-    "source": "docx 未提供實際公告條目，僅要求「過去公告範例（格式參考）」，以下為示範用範例資料",
+    "source": "docx 未提供實際公告條目，原示範用範例資料已於 2026-09-09 依客戶指示移除，待正式公告內容到位後填入",
     "fields": ["announcement_no", "title_zhTW", "title_en", "disclosure_date", "category", "content_zhTW", "content_en", "attachment"]
   },
-  "items": [
-    {
-      "id": "disclosure-company-established",
-      "slug": "disclosure-company-established",
-      "status": "draft",
-      "_placeholder": true,
-      "announcement_no": "2026-001",
-      "title_zhTW": "公告本公司完成公司設立登記",
-      "title_en": "Announcement of Company Registration Completion",
-      "disclosure_date": "2026-01-10T10:00:00+08:00",
-      "category": "其他重大訊息",
-      "content_zhTW": "（示範用範例內容）本公司瑞大生技投資管理顧問股份有限公司業於 2026 年 1 月完成公司設立登記，特此公告。",
-      "content_en": "(Sample content for demonstration purposes) NovaRadar Bio Venture Corporation completed its company registration in January 2026. This is hereby announced.",
-      "attachment": ""
-    },
-    {
-      "id": "disclosure-fund-raise",
-      "slug": "disclosure-fund-raise",
-      "status": "draft",
-      "_placeholder": true,
-      "announcement_no": "2026-002",
-      "title_zhTW": "公告本公司完成第一期基金募集",
-      "title_en": "Announcement of Completion of First Fund Raise",
-      "disclosure_date": "2026-06-01T10:00:00+08:00",
-      "category": "投資",
-      "content_zhTW": "（示範用範例內容）本公司「NovaRadar 生醫永續一號基金」業已完成第一期募集，募集金額達新台幣 30 億元，特此公告。",
-      "content_en": "(Sample content for demonstration purposes) The \"NovaRadar Bio Sustainability Fund I\" has completed its first round of fundraising, reaching a total of NT$3 billion. This is hereby announced.",
-      "attachment": ""
-    }
-  ]
+  "items": []
 }

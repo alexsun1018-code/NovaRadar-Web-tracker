@@ -91,6 +91,8 @@ export interface NewsArticle {
   publish_date: string;
   category: NewsCategory;
   cover_image?: string;
+  /** 彈窗內文下方的補充照片（如活動議程表、大合照） */
+  gallery?: string[];
   summary_zhTW?: string;
   summary_en?: string;
   content_zhTW: string;

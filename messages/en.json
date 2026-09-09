@@ -25,11 +25,14 @@
     "soonBadge": "Soon",
     "notTranslated": "This content is not yet available in English and is shown in Traditional Chinese.",
     "learnMore": "Learn more",
-    "allYears": "All years"
+    "allYears": "All years",
+    "noAnnouncements": "No announcements yet."
   },
   "News": {
     "source": "Source",
-    "announcementNo": "Announcement No."
+    "announcementNo": "Announcement No.",
+    "toReadMore": "To Read More",
+    "close": "Close"
   },
   "Taxonomy": {
     "newsCategory": {
@@ -57,8 +60,14 @@
     "phone": "Phone",
     "email": "Email",
     "address": "Address",
-    "contactPerson": "Contact Person",
-    "notProvided": "Not yet provided"
+    "formName": "Name",
+    "formTel": "Tel",
+    "formEmail": "Email",
+    "formRemark": "Remark",
+    "formSubmit": "Submit",
+    "formSubmitting": "Submitting…",
+    "formSuccess": "Thank you for reaching out. We'll get back to you shortly.",
+    "formError": "Submission failed. Please try again later or email us directly."
   },
   "ComingSoonPage": {
     "subtitle": "This page is being prepared. Please check back soon."
@@ -150,24 +159,6 @@
         "description": "Targeting multiple pathways for both diagnosis and treatment."
       }
     }
-  },
-  "ProposalForm": {
-    "title": "Business Proposal",
-    "subtitle": "Whether it's funding needs or strategic partnership, we'd love to hear from you.",
-    "name": "Name",
-    "company": "Company / Organization",
-    "email": "Email",
-    "phone": "Phone",
-    "inquiryType": "Inquiry Type",
-    "inquiryTypeFunding": "Funding Needs",
-    "inquiryTypePartnership": "Strategic Partnership",
-    "inquiryTypeOther": "Other",
-    "message": "Message (optional)",
-    "submit": "Submit",
-    "submitting": "Submitting…",
-    "successTitle": "Submitted",
-    "successMessage": "Thank you for reaching out. We'll get back to you shortly.",
-    "errorMessage": "Submission failed. Please try again later or email us directly."
   },
   "Footer": {
     "aboutColumn": "About",

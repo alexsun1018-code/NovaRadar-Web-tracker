@@ -1,6 +1,4 @@
 import { notFound } from "next/navigation";
-import { getLocale } from "next-intl/server";
-import type { Locale } from "@/i18n/routing";
 import { getNewsBySlug, getNewsList } from "@/lib/cms/news";
 import { localizedField } from "@/lib/i18n/localizedField";
 import Header from "@/components/layout/Header";
@@ -18,16 +16,15 @@ export default async function NewsArticlePage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const locale = (await getLocale()) as Locale;
   const article = await getNewsBySlug(slug);
 
   if (!article) {
     notFound();
   }
 
-  const title = localizedField(article, locale, "title");
-  const content = localizedField(article, locale, "content");
-  const sourceName = localizedField(article, locale, "source_name");
+  const title = localizedField(article, "title");
+  const content = localizedField(article, "content");
+  const sourceName = localizedField(article, "source_name");
 
   return (
     <>
