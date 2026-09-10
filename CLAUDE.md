@@ -6,15 +6,21 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run dev      # Turbopack dev server on http://localhost:3000
-npm run build    # production build
+npm run build    # production build (Turbopack)
 npm run start    # serve the production build
 npm run lint     # eslint (eslint-config-next core-web-vitals + typescript)
 npx tsc --noEmit # type-check; there is no separate `typecheck` script
 ```
 
-There is no automated test suite (no Jest/Vitest/Playwright test files, even though `playwright` is a
-devDependency — it is only used ad hoc for screenshot verification during development). Verify changes with
-`npx tsc --noEmit`, `npm run lint`, and by driving the dev server manually.
+There is no automated test suite (no Jest/Vitest/Playwright test files under a `tests/`/`__tests__` dir). Verify
+changes with `npx tsc --noEmit`, `npm run lint`, and by driving the dev server manually (Playwright is a
+devDependency for this — write a throwaway `.mjs` script under `scripts/`, run it with `node`, then delete it;
+don't leave ad hoc verification scripts committed).
+
+`scripts/*.mjs` are pre-existing one-off Playwright scripts from earlier sessions (`analytics-test.mjs`,
+`form-test.mjs`, `link-crawl.mjs`, `rwd-screenshot.mjs`), not a maintained tool — some hardcode locales that no
+longer exist (`zh-tw`, `zh-cn`) from before the 2026-09-09 EN-only change, so their output can't be trusted as-is;
+skim before running.
 
 After UI changes, prefer `rm -rf .next` before restarting `next dev` if something looks stale — Next's dev
 image-optimization cache keys optimized images by URL path, not file content, so replacing an image file (e.g.
@@ -72,7 +78,23 @@ add new glyphs there rather than pulling in an icon library. Homepage sections c
 icon pool across ValueProps/ClinicalValueBridge/WeInvestIn/StrategicFocus — keep icon choices unique across all
 of them (see the icon-review entry in the Change Log for the reasoning already applied).
 
+**Contact form pipeline**: `ContactForm.tsx` (client) POSTs to `app/api/contact/route.ts`, which validates with
+`lib/forms/schema.ts` (`zod`) and hands off to `lib/forms/leadSink.ts::sendLead()` — the only function that knows
+about the current email provider (Resend). This indirection exists so swapping to a CRM later only means
+rewriting `leadSink.ts`. Without `RESEND_API_KEY`/`CONTACT_INBOX_EMAIL` set, it just `console.warn`s and returns
+(no email actually sent) — see `.env.example`.
+
+**Analytics**: GA4 (`@next/third-parties`'s `<GoogleAnalytics>`, gated on `NEXT_PUBLIC_GA_MEASUREMENT_ID`) and Meta
+Pixel (`components/analytics/MetaPixel.tsx`, gated on `NEXT_PUBLIC_META_PIXEL_ID`) both render nothing when their
+env var is unset. `lib/analytics/track.ts::trackLead()` fires the `generate_lead`/`Lead` conversion event on
+successful form submit.
+
 **Path alias**: `@/*` → repo root (`tsconfig.json`).
+
+**Earliest history**: `docs/dev-log.md` covers 2026-07-17/18 — initial local setup, the GitHub repo
+(`alexsun1018-code/NovaRadar-Web-tracker`, public) and Vercel project (`novaradar-web-tracker`, linked so pushing
+`main` auto-deploys) being created — before the Change Log below started. Check it for anything not explained by
+current code or the Change Log.
 
 ## Content & Translation Conventions
 
